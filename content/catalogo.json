@@ -1,21 +1,38 @@
 {
   "categorias": [
     {
-      "nombre": "Mates",
+      "nombre": "Matecitos",
       "id": "mates",
-      "foto_portada": "mate.jpg",
+      "foto_portada": "/assets/uploads/sushi2.jpg",
       "productos": [
         {
-          "nombre": "Mate Imperial Calabaza",
-          "precio": "28000",
+          "nombre": "Mate Imperial Calabacin",
+          "precio_base": 25000,
+          "descuento": 10,
+          "rating": "5.0",
+          "agotado": false,
           "foto": "mate.jpg",
-          "descripcion": "Virola de alpaca cincelada artesanalmente."
+          "descripcion": "Virola de alpaca cincelada artesanalmentesdasdasdasd",
+          "precio": "28000"
         },
         {
           "nombre": "Mate Camionero Cuero",
-          "precio": "22000",
+          "precio_base": 130,
+          "descuento": 10,
+          "rating": "5.0",
+          "agotado": false,
           "foto": "mate.jpg",
-          "descripcion": "Calabaza gruesa forrada en cuero vacuno seleccionado."
+          "descripcion": "Calabaza gruesa forrada en cuero vacuno seleccionado.",
+          "precio": "22000"
+        },
+        {
+          "nombre": "matienzo",
+          "precio_base": 180,
+          "descuento": null,
+          "rating": "4.6",
+          "agotado": false,
+          "foto": "https://picsum.photos/id/108/1920/1280.webp",
+          "descripcion": "bliblibli"
         }
       ]
     },
@@ -26,9 +43,13 @@
       "productos": [
         {
           "nombre": "Bombillón Pico de Loro Alpaca",
-          "precio": "12000",
+          "precio_base": 2000,
+          "descuento": 15,
+          "rating": "4.8",
+          "agotado": true,
           "foto": "bombilla.jpg",
-          "descripcion": "Caño grueso con filtro ranurado."
+          "descripcion": "Caño grueso con filtro ranurado.",
+          "precio": "12000"
         }
       ]
     },
@@ -39,9 +60,13 @@
       "productos": [
         {
           "nombre": "Termo Media Manija 1L",
-          "precio": "45000",
+          "precio_base": 100,
+          "descuento": 25,
+          "rating": "5.0",
+          "agotado": false,
           "foto": "negrotapagris2.jpg",
-          "descripcion": "Acero inoxidable doble capa."
+          "descripcion": "Acero inoxidable doble capa.",
+          "precio": "45000"
         }
       ]
     }
