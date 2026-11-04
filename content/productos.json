@@ -1,0 +1,34 @@
+{
+  "productos": [
+    {
+      "titulo": "Mates",
+      "imagen": "mate.jpg",
+      "link": "mates.html"
+    },
+    {
+      "titulo": "Bombillones",
+      "imagen": "bombilla.jpg",
+      "link": "bombillones.html"
+    },
+    {
+      "titulo": "Termos",
+      "imagen": "negrotapagris2.jpg",
+      "link": "termos.html"
+    },
+    {
+      "titulo": "Yerbas",
+      "imagen": "baldo.jpg",
+      "link": "yerbas.html"
+    },
+    {
+      "titulo": "Canastas",
+      "imagen": "canastainferiores.jpg",
+      "link": "canastas.html"
+    },
+    {
+      "titulo": "Yerbero",
+      "imagen": "yerberobaldo.jpg",
+      "link": "yerberos.html"
+    }
+  ]
+}

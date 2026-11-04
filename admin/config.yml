@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: mondinellisg-prog/matemi2
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  - name: "catalogo"
+    label: "Catálogo de Productos"
+    files:
+      - name: "destacados"
+        label: "Productos Destacados"
+        file: "content/productos.json"
+        fields:
+          - label: "Lista de Productos"
+            name: "productos"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            fields:
+              - { label: "Título del Producto", name: "titulo", widget: "string" }
+              - { label: "Imagen", name: "imagen", widget: "image" }
+              - { label: "Enlace / Página de detalle", name: "link", widget: "string", default: "mates.html" }

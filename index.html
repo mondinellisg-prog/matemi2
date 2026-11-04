@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATEEMI | Excelencia Superior</title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES DE COLOR --- */
+        :root {
+            --verde-yerba: #557A46;
+            --verde-oscuro: #2D4A22;
+            --marron-tierra: #6B4423;
+            --marron-claro: #8B5A2B;
+            --blanco: #FDFBF7;
+            --texto-oscuro: #333333;
+            --sombra-flotante: 0 15px 35px rgba(0, 0, 0, 0.08);
+            --sombra-hover: 0 22px 45px rgba(0, 0, 0, 0.16);
+        }
+
+        /* --- ESTILOS GENERALES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: var(--blanco); 
+            color: var(--texto-oscuro); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+        }
+        h1, h2, h3 { font-family: 'Lora', serif; font-weight: 600; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAVEGACIÓN FLOTANTE (GLASSMORPHISM) --- */
+        nav { 
+            position: sticky; 
+            top: 0; 
+            width: 100%; 
+            padding: 14px 0; 
+            background-color: rgba(107, 68, 35, 0.95); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+            transition: all 0.3s ease;
+        }
+        .nav-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: white; 
+        }
+        
+        .logo { display: flex; align-items: center; flex-shrink: 0; }
+        .logo img {
+            height: 56px;
+            width: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            transition: transform 0.3s ease, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            display: block;
+        }
+        .logo img:hover { transform: scale(1.05); }
+        
+        .nav-links { 
+            display: flex; 
+            align-items: center;
+            gap: 24px; 
+            font-size: 14px; 
+            text-transform: uppercase; 
+            font-weight: 600; 
+        }
+        .nav-links a { 
+            position: relative; 
+            transition: color 0.3s ease; 
+            padding: 4px 0;
+            white-space: nowrap;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #f0c29a;
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: #f0c29a; }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- TÍTULOS DE SECCIÓN --- */
+        .section-title { 
+            text-align: center; 
+            margin: 70px 0 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--verde-oscuro); 
+            font-size: 32px;
+            letter-spacing: 0.5px;
+        }
+        .section-title::before, .section-title::after { 
+            content: ""; 
+            flex: 1; 
+            border-bottom: 2px solid rgba(85, 122, 70, 0.3); 
+            max-width: 120px; 
+            margin: 0 20px; 
+        }
+
+        /* --- HERO --- */
+        .hero {
+            height: calc(100vh - 84px);
+            background: linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)), url('portada.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+        .hero-content {
+            animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-content h1 {
+            font-size: 72px;
+            letter-spacing: 9px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .hero-content p {
+            font-size: 22px;
+            font-weight: 300;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-style: italic;
+            font-family: 'Lora', serif;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+        }
+        
+        .btn-hero {
+            display: inline-block;
+            margin-top: 35px;
+            padding: 14px 40px;
+            background-color: var(--verde-yerba);
+            color: white;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .btn-hero:hover {
+            background-color: var(--marron-tierra);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+        }
+
+        /* --- BOTONES SLIDER --- */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            color: var(--verde-oscuro);
+            border: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-btn:hover { 
+            background: var(--marron-tierra); 
+            color: white; 
+            transform: translateY(-50%) scale(1.12);
+        }
+        .btn-left { left: -20px; }
+        .btn-right { right: -20px; }
+
+        /* --- PRODUCTOS DESTACADOS --- */
+        .accessories-section {
+            background-color: var(--verde-oscuro);
+            padding: 80px 0 90px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .accessories-section .section-title { color: white; margin-top: 0; }
+        .accessories-section .section-title::before, 
+        .accessories-section .section-title::after {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        .acc-slider-wrapper {
+            position: relative;
+            max-width: 1150px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        
+        .acc-track {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            padding: 25px 15px;
+            width: 100%;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .acc-track::-webkit-scrollbar { display: none; width: 0; height: 0; }
+
+        .acc-card {
+            min-width: 255px;
+            background: white;
+            color: var(--texto-oscuro);
+            border-radius: 14px;
+            padding: 22px;
+            text-align: center;
+            box-shadow: var(--sombra-flotante);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+            scroll-snap-align: start;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img-wrap {
+            width: 100%;
+            height: 205px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            position: relative;
+            background-color: #eee;
+        }
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .acc-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .acc-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+        .acc-card:hover .card-img-wrap img { transform: scale(1.08); }
+        .acc-card:hover::before { animation: shine 0.85s ease-out; }
+
+        @keyframes shine {
+            0% { left: -120%; }
+            100% { left: 220%; }
+        }
+
+        .acc-card h4 { color: var(--marron-tierra); font-size: 19px; margin-bottom: 12px; }
+        
+        .btn-acc {
+            display: block; 
+            background: var(--verde-yerba);
+            color: white;
+            border: none;
+            padding: 11px 0;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(85, 122, 70, 0.3);
+        }
+        .btn-acc:hover { 
+            background: var(--marron-tierra); 
+            box-shadow: 0 6px 16px rgba(107, 68, 35, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* --- INFO SECTION --- */
+        .info-section { padding: 70px 0 80px 0; background-color: var(--blanco); }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        .info-card {
+            background: white;
+            padding: 45px 32px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: var(--sombra-flotante);
+            border-top: 5px solid var(--verde-yerba);
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+        }
+        .info-card:hover { transform: translateY(-10px); box-shadow: var(--sombra-hover); }
+        .info-icon { font-size: 42px; color: var(--marron-tierra); margin-bottom: 22px; display: inline-block; }
+        .info-card h3 { color: var(--verde-oscuro); font-size: 22px; margin-bottom: 16px; }
+        .info-card p, .info-card ul { color: var(--texto-oscuro); font-size: 15px; text-align: left; line-height: 1.6; }
+        .info-card ul { list-style-type: none; padding: 0; margin-top: 10px; }
+        .info-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
+        .info-card li::before {
+            content: "•";
+            color: var(--verde-yerba);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* --- CONTACTO --- */
+        .contact-section { padding: 30px 0 80px 0; }
+        .contact-wrapper { display: flex; gap: 45px; align-items: center; }
+        .contact-info { flex: 1; background: white; padding: 35px; border-radius: 14px; box-shadow: var(--sombra-flotante); }
+        .contact-item { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 24px; font-size: 15.5px; }
+        .contact-item:last-child { margin-bottom: 0; }
+        .contact-item i { color: var(--verde-yerba); font-size: 24px; margin-top: 3px; }
+        
+        .contact-map { flex: 1.2; height: 380px; border-radius: 16px; overflow: hidden; box-shadow: var(--sombra-flotante); }
+        .contact-map iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- FOOTER --- */
+        footer { background-color: var(--verde-oscuro); color: white; padding: 35px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-logo { font-family: 'Lora', serif; font-size: 22px; letter-spacing: 1.5px; }
+        .social-icons a { color: white; margin-left: 18px; font-size: 19px; display: inline-block; }
+        .social-icons a:hover { color: #f0c29a; }
+
+        /* --- WHATSAPP --- */
+        .whatsapp-float { 
+            position: fixed; 
+            width: 60px; 
+            height: 60px; 
+            bottom: 25px; 
+            right: 25px; 
+            background-color: #25d366; 
+            color: #FFF; 
+            border-radius: 50px; 
+            text-align: center; 
+            font-size: 30px; 
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45); 
+            z-index: 1000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            animation: pulse 3s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* --- ANIMACIONES SCROLL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 900px) {
+            .btn-left { left: 5px; }
+            .btn-right { right: 5px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 5px 0 !important; } 
+            .nav-content { 
+                display: flex !important;
+                flex-direction: row !important; 
+                justify-content: space-between !important; 
+                align-items: center !important; 
+                padding: 0 12px !important;
+                width: 100% !important;
+            }
+            .logo img { height: 40px !important; width: 40px !important; } 
+            .nav-links { 
+                display: flex !important; 
+                gap: 8px !important; 
+                flex-wrap: nowrap !important;
+            }
+            .nav-links a { font-size: 10px !important; padding: 2px 0 !important; }
+            .hero { height: calc(100vh - 50px); background-attachment: scroll; }
+            .hero-content h1 { font-size: 42px; margin-bottom: 8px; letter-spacing: 4px; }
+            .hero-content p { font-size: 15px; margin-bottom: 12px; }
+            .btn-hero { margin-top: 16px; padding: 12px 28px; font-size: 13px; }
+            .contact-wrapper { flex-direction: column; gap: 30px; }
+            .footer-content { flex-direction: column; gap: 20px; text-align: center; }
+            .carousel-btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <img src="logo.png" alt="Logo MATEEMI">
+            </a>
+            <div class="nav-links">
+                <a href="#destacados">Productos Destacados</a>
+                <a href="#info">Info Útil</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>MATEMI</h1>
+            <p>"Excelencia superior en todo momento para brindarte seguridad total y una experiencia matera plena y autentica"</p>
+            <a href="#destacados" class="btn-hero">Ver Productos</a>
+        </div>
+    </header>
+
+    <!-- 2. PRODUCTOS DESTACADOS (AHORA DINÁMICOS) -->
+    <section id="destacados" class="accessories-section">
+        <div class="container">
+            <h2 class="section-title reveal">Productos Destacados</h2>
+            
+            <div class="acc-slider-wrapper">
+                <button class="carousel-btn btn-left" id="accBtnPrev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                
+                <!-- El CMS cargará las tarjetas adentro de este contenedor -->
+                <div class="acc-track" id="accTrack">
+                    <!-- Los productos se inyectan automáticamente desde content/productos.json -->
+                </div>
+
+                <button class="carousel-btn btn-right" id="accBtnNext" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO ÚTIL -->
+    <section id="info" class="info-section container">
+        <h2 class="section-title reveal">Información Útil</h2>
+        
+        <div class="info-grid">
+            <div class="info-card reveal">
+                <i class="fas fa-wallet info-icon"></i>
+                <h3>Métodos de Pago</h3>
+                <p>Aceptamos todas las tarjetas, transferencias bancarias y pago en efectivo para tu comodidad.</p>
+                <ul>
+                    <li><strong>10% de descuento</strong> abonando por transferencia o efectivo.</li>
+                    <li><strong>3 cuotas sin interés</strong> con tarjetas bancarizadas.</li>
+                    <li>Operamos con Mercado Pago seguro.</li>
+                </ul>
+            </div>
+            
+            <div class="info-card reveal">
+                <i class="fas fa-truck info-icon"></i>
+                <h3>Envíos y Entregas</h3>
+                <p>Realizamos envíos a todo el país para que tu equipo matero llegue impecable a tu casa.</p>
+                <ul>
+                    <li><strong>CABA y GBA:</strong> Envíos por motomensajería en el día o al día siguiente.</li>
+                    <li><strong>Resto del país:</strong> A través de Correo Argentino.</li>
+                    <li><strong>Retiro gratis:</strong> Podés retirar por nuestro local coordinando previamente.</li>
+                </ul>
+            </div>
+            
+            <div class="info-card reveal">
+                <i class="fas fa-calendar-alt info-icon"></i>
+                <h3>Próximas Ferias</h3>
+                <p>¡Vení a visitarnos, tocá los productos y armá tu equipo matero en persona!</p>
+                <ul>
+                    <li><strong>15 de Noviembre:</strong> Feria de Diseño (Palermo) de 14 a 20hs.</li>
+                    <li><strong>02 de Diciembre:</strong> Festival Matero (La Rural) de 10 a 18hs.</li>
+                    <li><strong>20 de Diciembre:</strong> Especial Navidad (Devoto) de 12 a 20hs.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contact-section container">
+        <h2 class="section-title reveal">Ubicación y Contacto</h2>
+        
+        <div class="contact-wrapper">
+            <div class="contact-info reveal">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Nuestra Tienda:</strong><br>
+                        Pedro Lozano 3918, Devoto, CABA, Argentina.
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Atención al Cliente:</strong><br>
+                        +54 9 11 54251118
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Consultas:</strong><br>
+                        matemiok@gmail.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horarios:</strong><br>
+                        Lunes a Viernes: 09:00 - 19:00 hs.<br>
+                        Sábados: 10:00 - 14:00 hs.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-map reveal">
+                <iframe src="https://maps.google.com/maps?q=Pedro%20Lozano%203918,%20Devoto,%20CABA&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">MATEMI</div>
+            <div style="font-size: 13px; color: #ccc;">© 2026 MATEMI. Todos los derechos reservados.</div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP -->
+    <a href="https://wa.me/5491154251118" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Carga dinámica de productos generados por Sveltia CMS
+        async function loadProductos() {
+            const track = document.getElementById('accTrack');
+            try {
+                // Buscamos el JSON con un timestamp para evitar caché del navegador
+                const response = await fetch('content/productos.json?v=' + Date.now());
+                if (!response.ok) throw new Error('No se encontró el archivo de productos');
+                
+                const data = await response.json();
+                const productos = data.productos || [];
+
+                track.innerHTML = productos.map(prod => `
+                    <div class="acc-card reveal active">
+                        <div class="card-img-wrap">
+                            <img src="${prod.imagen}" alt="${prod.titulo}" loading="lazy">
+                        </div>
+                        <h4>${prod.titulo}</h4>
+                        <a href="${prod.link || '#'}" class="btn-acc">Ver Detalle</a>
+                    </div>
+                `).join('');
+                
+            } catch (err) {
+                console.error("Error al cargar productos:", err);
+                track.innerHTML = '<p style="color:white; text-align:center; width:100%;">Próximamente más productos.</p>';
+            }
+        }
+
+        // Observer para animaciones al scrollear
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProductos();
+
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            reveals.forEach(el => observer.observe(el));
+        });
+
+        // Controles del Slider
+        const accTrack = document.getElementById('accTrack');
+        document.getElementById('accBtnNext').addEventListener('click', () => {
+            accTrack.scrollBy({ left: 280, behavior: 'smooth' });
+        });
+        document.getElementById('accBtnPrev').addEventListener('click', () => {
+            accTrack.scrollBy({ left: -280, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
