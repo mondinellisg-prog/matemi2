@@ -7,18 +7,29 @@ media_folder: "assets/uploads"
 public_folder: "assets/uploads"
 
 collections:
-  - name: "catalogo"
-    label: "Catálogo de Productos"
+  - name: "tienda"
+    label: "Administrador de Tienda"
     files:
-      - name: "destacados"
-        label: "Productos Destacados"
-        file: "content/productos.json"
+      - name: "catalogo_completo"
+        label: "Categorías y Productos"
+        file: "content/catalogo.json"
         fields:
-          - label: "Lista de Productos"
-            name: "productos"
+          - label: "Categorías"
+            name: "categorias"
             widget: "list"
-            summary: "{{fields.titulo}}"
+            summary: "{{fields.nombre}}"
             fields:
-              - { label: "Título del Producto", name: "titulo", widget: "string" }
-              - { label: "Imagen", name: "imagen", widget: "image" }
-              - { label: "Enlace / Página de detalle", name: "link", widget: "string", default: "mates.html" }
+              - { label: "Nombre de la Categoría", name: "nombre", widget: "string", hint: "Ej: Mates, Termos, Mochilas" }
+              - { label: "Identificador (slug)", name: "id", widget: "string", hint: "En minúsculas y sin espacios. Ej: mates, termos, mochilas" }
+              - { label: "Foto para la Portada", name: "foto_portada", widget: "image" }
+              
+              # Lista de productos adentro de esta categoría
+              - label: "Productos de esta categoría"
+                name: "productos"
+                widget: "list"
+                summary: "{{fields.nombre}} - ${{fields.precio}}"
+                fields:
+                  - { label: "Nombre del Producto", name: "nombre", widget: "string" }
+                  - { label: "Precio ($)", name: "precio", widget: "string" }
+                  - { label: "Foto del Producto", name: "foto", widget: "image" }
+                  - { label: "Descripción", name: "descripcion", widget: "text", required: false }

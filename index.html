@@ -579,38 +579,45 @@
     </a>
 
     <!-- SCRIPTS -->
+<!-- SCRIPTS AL FINAL DE INDEX.HTML -->
     <script>
-        // Carga dinámica de productos generados por Sveltia CMS
-        async function loadProductos() {
+        // 1. Carga las categorías dinámicas desde content/catalogo.json
+        async function loadCategorias() {
             const track = document.getElementById('accTrack');
             try {
-                // Buscamos el JSON con un timestamp para evitar caché del navegador
-                const response = await fetch('content/productos.json?v=' + Date.now());
-                if (!response.ok) throw new Error('No se encontró el archivo de productos');
+                const response = await fetch('content/catalogo.json?v=' + Date.now());
+                if (!response.ok) throw new Error('No se encontró catalogo.json');
                 
                 const data = await response.json();
-                const productos = data.productos || [];
+                const categorias = data.categorias || [];
 
-                track.innerHTML = productos.map(prod => `
+                if (categorias.length === 0) {
+                    track.innerHTML = '<p style="color:white; text-align:center; width:100%;">No hay categorías disponibles.</p>';
+                    return;
+                }
+
+                // Inyecta cada categoría en el carrusel
+                track.innerHTML = categorias.map(cat => `
                     <div class="acc-card reveal active">
                         <div class="card-img-wrap">
-                            <img src="${prod.imagen}" alt="${prod.titulo}" loading="lazy">
+                            <img src="${cat.foto_portada}" alt="${cat.nombre}" loading="lazy">
                         </div>
-                        <h4>${prod.titulo}</h4>
-                        <a href="${prod.link || '#'}" class="btn-acc">Ver Detalle</a>
+                        <h4>${cat.nombre}</h4>
+                        <a href="categoria.html?cat=${cat.id}" class="btn-acc">Ver Productos</a>
                     </div>
                 `).join('');
                 
             } catch (err) {
-                console.error("Error al cargar productos:", err);
+                console.error("Error al cargar categorías:", err);
                 track.innerHTML = '<p style="color:white; text-align:center; width:100%;">Próximamente más productos.</p>';
             }
         }
 
-        // Observer para animaciones al scrollear
+        // 2. Ejecutar al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
-            loadProductos();
+            loadCategorias(); // <-- Acá llama a la función correcta
 
+            // Animación al hacer scroll
             const reveals = document.querySelectorAll('.reveal');
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
@@ -624,7 +631,7 @@
             reveals.forEach(el => observer.observe(el));
         });
 
-        // Controles del Slider
+        // 3. Flechas del carrusel
         const accTrack = document.getElementById('accTrack');
         document.getElementById('accBtnNext').addEventListener('click', () => {
             accTrack.scrollBy({ left: 280, behavior: 'smooth' });

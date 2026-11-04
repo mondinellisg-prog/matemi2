@@ -1,0 +1,49 @@
+{
+  "categorias": [
+    {
+      "nombre": "Mates",
+      "id": "mates",
+      "foto_portada": "mate.jpg",
+      "productos": [
+        {
+          "nombre": "Mate Imperial Calabaza",
+          "precio": "28000",
+          "foto": "mate.jpg",
+          "descripcion": "Virola de alpaca cincelada artesanalmente."
+        },
+        {
+          "nombre": "Mate Camionero Cuero",
+          "precio": "22000",
+          "foto": "mate.jpg",
+          "descripcion": "Calabaza gruesa forrada en cuero vacuno seleccionado."
+        }
+      ]
+    },
+    {
+      "nombre": "Bombillones",
+      "id": "bombillones",
+      "foto_portada": "bombilla.jpg",
+      "productos": [
+        {
+          "nombre": "Bombillón Pico de Loro Alpaca",
+          "precio": "12000",
+          "foto": "bombilla.jpg",
+          "descripcion": "Caño grueso con filtro ranurado."
+        }
+      ]
+    },
+    {
+      "nombre": "Termos",
+      "id": "termos",
+      "foto_portada": "negrotapagris2.jpg",
+      "productos": [
+        {
+          "nombre": "Termo Media Manija 1L",
+          "precio": "45000",
+          "foto": "negrotapagris2.jpg",
+          "descripcion": "Acero inoxidable doble capa."
+        }
+      ]
+    }
+  ]
+}
