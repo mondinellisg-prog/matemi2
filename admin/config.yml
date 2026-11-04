@@ -24,12 +24,15 @@ collections:
               - { label: "Foto para la Portada", name: "foto_portada", widget: "image" }
               
               # Lista de productos adentro de esta categoría
-              - label: "Productos de esta categoría"
+             - label: "Productos de esta categoría"
                 name: "productos"
                 widget: "list"
-                summary: "{{fields.nombre}} - ${{fields.precio}}"
+                summary: "{{fields.nombre}} - ${{fields.precio_base}}"
                 fields:
                   - { label: "Nombre del Producto", name: "nombre", widget: "string" }
-                  - { label: "Precio ($)", name: "precio", widget: "string" }
+                  - { label: "Precio ($)", name: "precio_base", widget: "number", value_type: "int", hint: "Ingresá solo el número sin puntos (ej: 40000)" }
+                  - { label: "% de Descuento (Opcional)", name: "descuento", widget: "number", value_type: "int", required: false, min: 0, max: 99, hint: "Si ponés 20, calcula el 20% off y tacha el precio original automáticamente" }
+                  - { label: "Puntuación", name: "rating", widget: "string", default: "5.0", required: false, hint: "Ej: 4.8 o 5.0" }
+                  - { label: "¿Está Agotado?", name: "agotado", widget: "boolean", default: false, hint: "Muestra el cartel de Agotado y desactiva el botón" }
                   - { label: "Foto del Producto", name: "foto", widget: "image" }
                   - { label: "Descripción", name: "descripcion", widget: "text", required: false }

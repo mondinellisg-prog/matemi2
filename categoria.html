@@ -22,6 +22,67 @@
         .card .precio { font-size: 22px; font-weight: bold; color: var(--verde-oscuro); margin-bottom: 15px; }
         .btn-comprar { background: #25d366; color: white; text-decoration: none; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-comprar:hover { background: #1ebd50; }
+/* Contenedor relativo para posicionar la etiqueta sobre la foto */
+.card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Etiquetas (Badges) */
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    z-index: 2;
+    text-transform: uppercase;
+}
+.badge-descuento { background-color: #557A46; /* Verde */ }
+.badge-agotado { background-color: #d9534f; /* Rojo */ }
+
+/* Fila de Categoría y Rating */
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #888;
+    margin: 8px 0 4px;
+}
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+    color: #333;
+}
+.card-rating i { color: #f5a623; }
+
+/* Precios */
+.precios-box {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 10px 0;
+}
+.precio-actual {
+    font-size: 20px;
+    font-weight: 700;
+    color: #557A46;
+}
+.precio-tachado {
+    font-size: 14px;
+    color: #999;
+    text-decoration: line-through;
+}
+
     </style>
 </head>
 <body>
@@ -64,17 +125,69 @@
                     return;
                 }
 
-                gridEl.innerHTML = categoria.productos.map(p => `
-                    <div class="card">
-                        <img src="${p.foto}" alt="${p.nombre}">
-                        <h3>${p.nombre}</h3>
-                        <p>${p.descripcion || ''}</p>
-                        <div class="precio">$${p.precio} ARS</div>
-                        <a href="https://wa.me/5491154251118?text=Hola!%20Quiero%20consultar%20por:%20${encodeURIComponent(p.nombre)}" target="_blank" class="btn-comprar">
-                            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
-                        </a>
-                    </div>
-                `).join('');
+ // Función para dar formato de pesos con puntos de miles (ej: 35000 -> $35.000)
+const formatearMoneda = (monto) => {
+    return new Intl.NumberFormat('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        maximumFractionDigits: 0
+    }).format(monto);
+};
+
+gridEl.innerHTML = categoria.productos.map(p => {
+    const precioBase = Number(p.precio_base) || 0;
+    const descuentoPorcentaje = Number(p.descuento) || 0;
+
+    let precioFinal = precioBase;
+    let precioTachadoHtml = '';
+    let badgeHtml = '';
+
+    // Si tiene descuento y no está en 0:
+    if (descuentoPorcentaje > 0 && descuentoPorcentaje < 100) {
+        // Calcula el precio con el descuento aplicado
+        precioFinal = Math.round(precioBase * (1 - (descuentoPorcentaje / 100)));
+        // Muestra el precio base tachado
+        precioTachadoHtml = `<span class="precio-tachado">${formatearMoneda(precioBase)}</span>`;
+        // Cartelito verde
+        badgeHtml = `<span class="badge badge-descuento">${descuentoPorcentaje}% off</span>`;
+    }
+
+    // Si el producto está agotado, pisa el cartel de descuento por el de Agotado
+    if (p.agotado) {
+        badgeHtml = `<span class="badge badge-agotado">Agotado</span>`;
+    }
+
+    const ratingValor = p.rating || '5.0';
+
+    return `
+        <div class="card">
+            <div class="card-img-wrap">
+                ${badgeHtml}
+                <img src="${p.foto}" alt="${p.nombre}" loading="lazy">
+            </div>
+
+            <div class="card-meta">
+                <span>${categoria.nombre || 'Mates'}</span>
+                <span class="card-rating">⭐ ${ratingValor}</span>
+            </div>
+
+            <h3>${p.nombre}</h3>
+            <p>${p.descripcion || ''}</p>
+
+            <div class="precios-box">
+                <span class="precio-actual">${formatearMoneda(precioFinal)}</span>
+                ${precioTachadoHtml}
+            </div>
+
+            <a href="https://wa.me/5491154251118?text=Hola!%20Quiero%20consultar%20por:%20${encodeURIComponent(p.nombre)}" 
+               target="_blank" 
+               class="btn-comprar" 
+               style="${p.agotado ? 'background:#888; pointer-events:none;' : ''}">
+                <i class="fab fa-whatsapp"></i> ${p.agotado ? 'Sin Stock' : 'Pedir por WhatsApp'}
+            </a>
+        </div>
+    `;
+}).join('');
 
             } catch (err) {
                 console.error(err);
