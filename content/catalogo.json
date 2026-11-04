@@ -11,7 +11,7 @@
           "descuento": 10,
           "rating": "5.0",
           "agotado": false,
-          "foto": "mate.jpg",
+          "foto": "https://picsum.photos/id/82/1920/1280.webp",
           "descripcion": "Virola de alpaca cincelada artesanalmentesdasdasdasd",
           "precio": "28000"
         },
