@@ -3,36 +3,63 @@ backend:
   repo: mondinellisg-prog/matemi2
   branch: main
 
-media_folder: "assets/uploads"
-public_folder: "assets/uploads"
+media_folder: assets/uploads
+public_folder: assets/uploads
 
 collections:
-  - name: "tienda"
-    label: "Administrador de Tienda"
+  - name: tienda
+    label: Administrador de Tienda
     files:
-      - name: "catalogo_completo"
-        label: "Categorías y Productos"
-        file: "content/catalogo.json"
+      - name: catalogo_completo
+        label: Categorias y Productos
+        file: content/catalogo.json
         fields:
-          - label: "Categorías"
-            name: "categorias"
-            widget: "list"
+          - label: Categorias
+            name: categorias
+            widget: list
             summary: "{{fields.nombre}}"
             fields:
-              - { label: "Nombre de la Categoría", name: "nombre", widget: "string", hint: "Ej: Mates, Termos, Mochilas" }
-              - { label: "Identificador (slug)", name: "id", widget: "string", hint: "En minúsculas y sin espacios. Ej: mates, termos, mochilas" }
-              - { label: "Foto para la Portada", name: "foto_portada", widget: "image" }
-              
-              # Lista de productos adentro de esta categoría
-             - label: "Productos de esta categoría"
-                name: "productos"
-                widget: "list"
-                summary: "{{fields.nombre}} - ${{fields.precio_base}}"
+              - label: Nombre de la Categoria
+                name: nombre
+                widget: string
+                hint: "Ej: Mates, Termos, Mochilas"
+              - label: Identificador
+                name: id
+                widget: string
+                hint: "En minusculas y sin espacios. Ej: mates, termos, mochilas"
+              - label: Foto para la Portada
+                name: foto_portada
+                widget: image
+              - label: Productos de esta categoria
+                name: productos
+                widget: list
+                summary: "{{fields.nombre}}"
                 fields:
-                  - { label: "Nombre del Producto", name: "nombre", widget: "string" }
-                  - { label: "Precio ($)", name: "precio_base", widget: "number", value_type: "int", hint: "Ingresá solo el número sin puntos (ej: 40000)" }
-                  - { label: "% de Descuento (Opcional)", name: "descuento", widget: "number", value_type: "int", required: false, min: 0, max: 99, hint: "Si ponés 20, calcula el 20% off y tacha el precio original automáticamente" }
-                  - { label: "Puntuación", name: "rating", widget: "string", default: "5.0", required: false, hint: "Ej: 4.8 o 5.0" }
-                  - { label: "¿Está Agotado?", name: "agotado", widget: "boolean", default: false, hint: "Muestra el cartel de Agotado y desactiva el botón" }
-                  - { label: "Foto del Producto", name: "foto", widget: "image" }
-                  - { label: "Descripción", name: "descripcion", widget: "text", required: false }
+                  - label: Nombre del Producto
+                    name: nombre
+                    widget: string
+                  - label: Precio Base ($)
+                    name: precio_base
+                    widget: number
+                    value_type: int
+                  - label: Porcentaje Descuento
+                    name: descuento
+                    widget: number
+                    value_type: int
+                    required: false
+                  - label: Puntuacion
+                    name: rating
+                    widget: string
+                    default: "5.0"
+                    required: false
+                  - label: Esta Agotado
+                    name: agotado
+                    widget: boolean
+                    default: false
+                  - label: Foto del Producto
+                    name: foto
+                    widget: image
+                  - label: Descripcion
+                    name: descripcion
+                    widget: text
+                    required: false
