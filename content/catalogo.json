@@ -69,6 +69,22 @@
           "precio": "45000"
         }
       ]
+    },
+    {
+      "nombre": "Bolsos",
+      "id": "bolsos",
+      "foto_portada": "https://picsum.photos/id/823/1920/1280.webp",
+      "productos": [
+        {
+          "nombre": "Bolso canchero",
+          "precio_base": 34000,
+          "descuento": 22,
+          "rating": "5.0",
+          "agotado": false,
+          "foto": "https://picsum.photos/id/38/1920/1280.webp",
+          "descripcion": ""
+        }
+      ]
     }
   ]
 }
