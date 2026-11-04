@@ -1,9 +1,9 @@
 {
   "categorias": [
     {
-      "nombre": "Mates",
+      "nombre": "Matecitos",
       "id": "mates",
-      "foto_portada": "mate.jpg",
+      "foto_portada": "/assets/uploads/sushi2.jpg",
       "productos": [
         {
           "nombre": "Mate Imperial Calabaza",
