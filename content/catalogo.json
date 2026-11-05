@@ -85,6 +85,22 @@
           "precio": "45000"
         }
       ]
+    },
+    {
+      "nombre": "YERBEROS",
+      "id": "Yerbero de lata ideal para transportar yerba",
+      "foto_portada": "/assets/uploads/yerberobaldo.jpg",
+      "productos": [
+        {
+          "nombre": "Yerbero Baldo",
+          "precio_base": 10000,
+          "descuento": 15,
+          "rating": "5.0",
+          "agotado": false,
+          "foto": "/assets/uploads/canariasserena.jpg",
+          "descripcion": "Ideal diojdfodjfiodjfoisjdjosjdodjodjoosdcondvsiow oei"
+        }
+      ]
     }
   ]
 }
