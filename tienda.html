@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | MATEMI</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root { --verde-top: #2C3E18; --verde-matemi: #3D5021; --verde-claro: #5A7336; --crema-fondo: #FAFAF8; --gris-img: #F2EFE9; --texto: #333333; --texto-claro: #777777; --bordes: #E5E5E5; --whatsapp: #25D366; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--texto); }
+        a { text-decoration: none; color: inherit; }
+
+        /* MENÚ UNIFICADO */
+        .top-bar { background-color: var(--verde-top); color: white; text-align: center; padding: 8px 15px; font-size: 12px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid var(--bordes); background: white; position: sticky; top: 0; z-index: 100; }
+        .logo img { height: 50px; border-radius: 50%; }
+        .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 600; text-transform: uppercase;}
+        .nav-links a:hover { color: var(--verde-claro); }
+
+        .page-header { text-align: center; padding: 30px 15px; background-color: var(--crema-fondo); }
+        .page-title { font-family: 'Playfair Display', serif; font-size: 35px; color: var(--verde-matemi); }
+
+        .shop-container { padding: 40px 5%; }
+        
+        /* DISEÑO DE TARJETAS DEL HIJO */
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .product-card { transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        
+        .img-box { background-color: var(--gris-img); height: 280px; border-radius: 8px; margin-bottom: 15px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .discount-badge { position: absolute; top: 15px; left: 15px; background-color: var(--verde-matemi); color: white; padding: 5px 12px; font-size: 11px; font-weight: 600; border-radius: 15px; z-index: 10; }
+        .badge-agotado { background-color: #d9534f; }
+
+        .action-buttons { position: absolute; top: 15px; right: -50px; display: flex; flex-direction: column; gap: 10px; transition: 0.3s ease-in-out; z-index: 20; }
+        .product-card:hover .action-buttons { right: 15px; } 
+        .action-btn { background: white; border: none; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); color: var(--whatsapp); transition: 0.3s; }
+        .action-btn:hover { background-color: var(--whatsapp); color: white; transform: scale(1.1); }
+
+        .product-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--texto-claro); margin-bottom: 5px; }
+        .product-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--texto); line-height: 1.3;}
+        .price-new { font-size: 18px; font-weight: 700; color: #5A7336; margin-right: 10px;}
+        .price-old { font-size: 13px; color: var(--texto-claro); text-decoration: line-through; }
+
+        @media (max-width: 768px) { .nav-links { display:none; } }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">Envíos gratis a partir de $50.000</div>
+    <header>
+        <a href="index.html" class="logo"><img src="assets/uploads/logo.png" alt="MATEMI"></a>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="tienda.html" style="color: var(--verde-matemi);">Tienda</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1 class="page-title" id="tituloTienda">Catálogo Completo</h1>
+    </div>
+
+    <section class="shop-container">
+        <div class="products-grid" id="productosGrid">
+            <!-- Cargan solos por JS con el diseño de tu hijo -->
+        </div>
+    </section>
+
+    <script>
+        const formatearMoneda = (monto) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 }).format(monto);
+
+        async function cargarTienda() {
+            const params = new URLSearchParams(window.location.search);
+            const catFiltro = params.get('cat');
+            const gridEl = document.getElementById('productosGrid');
+            const tituloEl = document.getElementById('tituloTienda');
+
+            try {
+                const res = await fetch('content/catalogo.json?v=' + Date.now());
+                const data = await res.json();
+                let categoriasAMostrar = data.categorias || [];
+
+                // Si entró a tienda.html?cat=mates, filtra solo mates
+                if (catFiltro) {
+                    const catSelec = categoriasAMostrar.find(c => c.id === catFiltro);
+                    if (catSelec) {
+                        categoriasAMostrar = [catSelec];
+                        tituloEl.textContent = catSelec.nombre;
+                    }
+                }
+
+                let html = '';
+                categoriasAMostrar.forEach(cat => {
+                    if(!cat.productos) return;
+                    
+                    cat.productos.forEach(p => {
+                        const precioBase = Number(p.precio_base) || 0;
+                        const desc = Number(p.descuento) || 0;
+                        let precioFinal = precioBase;
+                        let precioViejoHtml = '';
+                        let badgeHtml = '';
+
+                        if (desc > 0) {
+                            precioFinal = Math.round(precioBase * (1 - (desc / 100)));
+                            precioViejoHtml = `<span class="price-old">${formatearMoneda(precioBase)}</span>`;
+                            badgeHtml = `<span class="discount-badge">${desc}% off</span>`;
+                        }
+                        if (p.agotado) {
+                            badgeHtml = `<span class="discount-badge badge-agotado">Agotado</span>`;
+                        }
+
+                        // ¡ACÁ ESTÁ EL DISEÑO HTML EXACTO QUE ARMÓ TU HIJO!
+                        html += `
+                        <article class="product-card">
+                            <div class="img-box">
+                                ${badgeHtml}
+                                <div class="action-buttons">
+                                    <a href="https://wa.me/5491154251118?text=Hola!%20Quiero%20comprar:%20${encodeURIComponent(p.nombre)}" target="_blank" class="action-btn" title="Comprar por WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                                <img src="assets/uploads/${p.foto}" alt="${p.nombre}" loading="lazy">
+                            </div>
+                            <div class="product-info">
+                                <div class="product-meta"><span>${cat.nombre}</span> <span>⭐ ${p.rating || '5.0'}</span></div>
+                                <h3 class="product-title">${p.nombre}</h3>
+                                <div class="product-pricing">
+                                    <span class="price-new">${formatearMoneda(precioFinal)}</span>
+                                    ${precioViejoHtml}
+                                </div>
+                            </div>
+                        </article>`;
+                    });
+                });
+
+                gridEl.innerHTML = html || '<p>No hay productos disponibles.</p>';
+            } catch (err) { gridEl.innerHTML = '<p>Error al cargar tienda.</p>'; }
+        }
+
+        cargarTienda();
+    </script>
+</body>
+</html>
