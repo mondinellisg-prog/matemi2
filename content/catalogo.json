@@ -1,104 +1,308 @@
 {
   "categorias": [
     {
-      "nombre": "Matecitos",
+      "nombre": "Mates",
       "id": "mates",
-      "foto_portada": "/assets/uploads/sushi2.jpg",
+      "foto_portada": "bordemetal.jpg",
       "productos": [
         {
-          "nombre": "Mate Imperial Calabacin",
+          "nombre": "Imperial con virola de alpaca",
+          "precio_base": 35000,
+          "agotado": true,
+          "foto": "bordemetal.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Roma full alpaca cincelada",
+          "precio_base": 43889,
+          "descuento": 10,
+          "agotado": false,
+          "foto": "bordemetalgordo.jpg",
+          "rating": "4.8"
+        },
+        {
+          "nombre": "Imperial de algarrobo con virola de alpaca y dije sol de mayo",
+          "precio_base": 27500,
+          "agotado": false,
+          "foto": "soldemayo.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Torpedo borravino de cuero croco",
+          "precio_base": 27000,
+          "agotado": true,
+          "foto": "bordemetalcolorado.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Cuero avejentado con virola de alpaca cincelada al lacre",
+          "precio_base": 48823,
+          "descuento": 15,
+          "agotado": false,
+          "foto": "bordemetalmostaza.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Torpedo de algarrobo con virola de alpaca",
+          "precio_base": 22500,
+          "agotado": false,
+          "foto": "bordemetalredondo.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Imperial criollo de borravino con cuero repujado",
+          "precio_base": 35000,
+          "agotado": false,
+          "foto": "bordemetalapoyo.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Ranchero vaquita animal print",
+          "precio_base": 26500,
+          "agotado": false,
+          "foto": "maderavaca.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Camionero de algarrobo",
+          "precio_base": 15000,
+          "agotado": false,
+          "foto": "camionerodealgarrobo.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Imperial borrabino cuero repujado con bolitas de bronce",
+          "precio_base": 42500,
+          "agotado": false,
+          "foto": "imperialborrabino.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Camionero con virola invertida de alpaca",
+          "precio_base": 32000,
+          "agotado": false,
+          "foto": "camionerovirolainvertida.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Imperial roma de algarrobo full alpaca con bolitas de bronce",
+          "precio_base": 39500,
+          "agotado": false,
+          "foto": "imperialromadealgarrobo.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Torpedo animal print (vaquita)",
+          "precio_base": 34000,
+          "agotado": false,
+          "foto": "torpedoanimalprintcuerovaquita.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Imperial esquinero con bases de alpaca",
+          "precio_base": 46500,
+          "agotado": false,
+          "foto": "maderavaca.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Imperial de alpaca cuero crudo con costura al tiento",
+          "precio_base": 53500,
+          "agotado": false,
+          "foto": "imperialcolorcrudo.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Imperial color negro",
           "precio_base": 25000,
-          "descuento": 10,
-          "rating": "5.0",
           "agotado": false,
-          "foto": "https://picsum.photos/id/82/1920/1280.webp",
-          "descripcion": "Virola de alpaca cincelada artesanalmentesdasdasdasd",
-          "precio": "28000"
-        },
-        {
-          "nombre": "Mate Camionero Cuero",
-          "precio_base": 130,
-          "descuento": 10,
-          "rating": "5.0",
-          "agotado": false,
-          "foto": "mate.jpg",
-          "descripcion": "Calabaza gruesa forrada en cuero vacuno seleccionado.",
-          "precio": "22000"
-        },
-        {
-          "nombre": "matienzo",
-          "precio_base": 180,
-          "descuento": null,
-          "rating": "4.6",
-          "agotado": false,
-          "foto": "https://picsum.photos/id/108/1920/1280.webp",
-          "descripcion": "bliblibli"
+          "foto": "imperialcolornegro.jpg",
+          "rating": "5.0"
         }
       ]
     },
     {
       "nombre": "Bombillones",
       "id": "bombillones",
-      "foto_portada": "bombilla.jpg",
+      "foto_portada": "bombilla1.jpg",
       "productos": [
         {
-          "nombre": "Bombillón Pico de Loro Alpaca",
-          "precio_base": 2000,
-          "descuento": 15,
-          "rating": "4.8",
-          "agotado": true,
-          "foto": "bombilla.jpg",
-          "descripcion": "Caño grueso con filtro ranurado.",
-          "precio": "12000"
-        }
-      ]
-    },
-    {
-      "nombre": "Bolsos",
-      "id": "bolsos",
-      "foto_portada": "https://picsum.photos/id/823/1920/1280.webp",
-      "productos": [
-        {
-          "nombre": "Bolso canchero",
-          "precio_base": 34000,
-          "descuento": 22,
-          "rating": "5.0",
+          "nombre": "Pico de loro, corona de alpaca y bronce",
+          "precio_base": 26875,
+          "descuento": 20,
           "agotado": false,
-          "foto": "https://picsum.photos/id/38/1920/1280.webp",
-          "descripcion": ""
+          "foto": "bombilla1.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Alpaca y bronce con doble anillo (curvo)",
+          "precio_base": 34999,
+          "agotado": true,
+          "foto": "bombilla2.jpg",
+          "rating": "4.8"
+        },
+        {
+          "nombre": "Recto mini de alpaca y bronce (doble anillo)",
+          "precio_base": 28500,
+          "agotado": true,
+          "foto": "bombilla3.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Pico de loro caño trenzado",
+          "precio_base": 4499,
+          "agotado": false,
+          "foto": "bombilla4.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Recto de alpaca y bronce (caño trenzado)",
+          "precio_base": 24999,
+          "descuento": 15,
+          "agotado": false,
+          "foto": "bombilla5.jpg",
+          "rating": "4.8"
+        },
+        {
+          "nombre": "Recta caño trenzado",
+          "precio_base": 4999,
+          "agotado": false,
+          "foto": "bombilla6.jpg",
+          "rating": "5.0"
         }
       ]
     },
     {
       "nombre": "Termos",
       "id": "termos",
-      "foto_portada": "negrotapagris2.jpg",
+      "foto_portada": "negrosilicona.jpg",
       "productos": [
         {
-          "nombre": "Termo Media Manija 1L",
-          "precio_base": 100,
-          "descuento": 25,
-          "rating": "5.0",
+          "nombre": "Negro silicona",
+          "precio_base": 28125,
+          "descuento": 20,
           "agotado": false,
-          "foto": "negrotapagris2.jpg",
-          "descripcion": "Acero inoxidable doble capa.",
-          "precio": "45000"
+          "foto": "negrosilicona.jpg",
+          "rating": "4.9"
         }
       ]
     },
     {
-      "nombre": "YERBEROS",
-      "id": "Yerbero de lata ideal para transportar yerba",
-      "foto_portada": "/assets/uploads/yerberobaldo.jpg",
+      "nombre": "Canastas",
+      "id": "canastas",
+      "foto_portada": "canastaprint.jpg",
+      "productos": [
+        {
+          "nombre": "Canasta cuerina animal print",
+          "precio_base": 29375,
+          "descuento": 20,
+          "agotado": false,
+          "foto": "canastaprint.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Canasta cuero pelota negro",
+          "precio_base": 24444,
+          "descuento": 10,
+          "agotado": false,
+          "foto": "canastainferiores.jpg",
+          "rating": "5.0"
+        }
+      ]
+    },
+    {
+      "nombre": "Yerbas",
+      "id": "yerbas",
+      "foto_portada": "baldo.jpg",
+      "productos": [
+        {
+          "nombre": "Baldo",
+          "precio_base": 9990,
+          "descuento": 20,
+          "agotado": false,
+          "foto": "baldo.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Canarias jengibre",
+          "precio_base": 8332,
+          "descuento": 10,
+          "agotado": false,
+          "foto": "canariasjengibre.jpg",
+          "rating": "4.8"
+        },
+        {
+          "nombre": "Canarias especial",
+          "precio_base": 7799,
+          "agotado": false,
+          "foto": "canariasespecial.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Rei verde premium",
+          "precio_base": 6899,
+          "agotado": true,
+          "foto": "reiverdepremium.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Pindaré",
+          "precio_base": 7409,
+          "descuento": 15,
+          "agotado": false,
+          "foto": "pindare.jpg",
+          "rating": "4.8"
+        },
+        {
+          "nombre": "Verdecita",
+          "precio_base": 5399,
+          "agotado": false,
+          "foto": "verdecita.jpg",
+          "rating": "5.0"
+        },
+        {
+          "nombre": "Rei Verde Clasica",
+          "precio_base": 5899,
+          "agotado": false,
+          "foto": "reiverdeclasica.jpg",
+          "rating": "4.7"
+        },
+        {
+          "nombre": "Rei verde tradicional",
+          "precio_base": 6699,
+          "agotado": false,
+          "foto": "reiverdetradicional.jpg",
+          "rating": "4.9"
+        },
+        {
+          "nombre": "Canarias Serena",
+          "precio_base": 7699,
+          "agotado": false,
+          "foto": "canariasserena.jpg",
+          "rating": "4.6"
+        },
+        {
+          "nombre": "Canarias suave",
+          "precio_base": 7683,
+          "descuento": 5,
+          "agotado": false,
+          "foto": "canariassuave.jpg",
+          "rating": "4.8"
+        }
+      ]
+    },
+    {
+      "nombre": "Yerberos",
+      "id": "yerberos",
+      "foto_portada": "yerberobaldo.jpg",
       "productos": [
         {
           "nombre": "Yerbero Baldo",
-          "precio_base": 10000,
-          "descuento": 15,
-          "rating": "5.0",
+          "precio_base": 26110,
+          "descuento": 10,
           "agotado": false,
-          "foto": "/assets/uploads/canariasserena.jpg",
-          "descripcion": "Ideal diojdfodjfiodjfoisjdjosjdodjodjoosdcondvsiow oei"
+          "foto": "yerberobaldo.jpg",
+          "rating": "4.8"
         }
       ]
     }
