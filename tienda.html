@@ -2,12 +2,12 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Completo | MATEMI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Catálogo & Tienda Oficial | MATEMI</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -18,25 +18,36 @@
             --text-secondary: #706F6A;
             --accent-forest: #222D1E;
             --accent-bronze: #9E8256;
+            --accent-bronze-dark: #82663B;
             --border-subtle: rgba(21, 22, 20, 0.08);
-            --border-focus: rgba(21, 22, 20, 0.2);
+            --border-focus: rgba(21, 22, 20, 0.22);
             --whatsapp: #25D366;
+            --whatsapp-dark: #1ebd50;
+            --shadow-float: 0 16px 36px -12px rgba(21, 22, 20, 0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-washi); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-washi); 
+            color: var(--text-primary); 
+            -webkit-font-smoothing: antialiased; 
+            overflow-x: hidden;
+        }
         a { text-decoration: none; color: inherit; }
+        button { font-family: inherit; }
 
-        /* HEADER CÁPSULA */
+        /* HEADER SUPERIOR CON ACCESO AL CARRITO */
         .top-nav {
-            padding: 24px 6%;
+            padding: 18px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-subtle);
-            background: rgba(247, 245, 240, 0.9);
+            background: rgba(247, 245, 240, 0.94);
             position: sticky; top: 0; z-index: 100;
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
         }
         .brand-title {
             font-family: 'Cinzel', serif;
@@ -44,15 +55,59 @@
             letter-spacing: 2.5px;
             font-weight: 700;
         }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .nav-link-subtle {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .nav-link-subtle:hover { color: var(--text-primary); }
+        
+        .cart-pill-btn {
+            background: var(--text-primary);
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+        }
+        .cart-pill-btn:hover {
+            background: var(--accent-forest);
+            transform: translateY(-2px);
+        }
+        .cart-count-badge {
+            background: var(--accent-bronze);
+            color: #FFFFFF;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            font-size: 11px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800;
+        }
 
-        /* FILTROS Y CABECERA */
+        /* CABECERA DE TIENDA */
         .catalog-header {
-            padding: 60px 6% 30px;
+            padding: 50px 6% 25px;
             text-align: center;
         }
         .catalog-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(34px, 5vw, 56px);
+            font-size: clamp(32px, 5vw, 52px);
             font-weight: 500;
             margin-bottom: 25px;
         }
@@ -63,13 +118,13 @@
             gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
         }
         .pill-btn {
             background: var(--surface);
             border: 1px solid var(--border-subtle);
             color: var(--text-secondary);
-            padding: 10px 22px;
+            padding: 9px 20px;
             border-radius: 40px;
             font-size: 13px;
             font-weight: 600;
@@ -83,32 +138,35 @@
             border-color: var(--text-primary);
         }
 
-        /* CONTROLES SECUNDARIOS (ORDEN) */
+        /* CONTROLES (ORDEN & CONTEO) */
         .catalog-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 6% 25px;
+            padding: 0 6% 22px;
             font-size: 13px;
             color: var(--text-secondary);
+            max-width: 1400px;
+            margin: 0 auto;
         }
         .sort-select {
-            padding: 9px 16px;
+            padding: 8px 16px;
             border-radius: 30px;
             border: 1px solid var(--border-subtle);
             background: var(--surface);
             font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 13px;
+            font-size: 12.5px;
             outline: none;
             cursor: pointer;
+            color: var(--text-primary);
         }
 
-        /* GRILLA DE PRODUCTOS ESTILO TOKIO */
-        .shop-container { padding: 0 6% 80px; max-width: 1450px; margin: 0 auto; }
+        /* GRILLA DE PRODUCTOS */
+        .shop-container { padding: 0 6% 80px; max-width: 1400px; margin: 0 auto; }
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 28px;
         }
         .product-card {
             background: var(--surface);
@@ -116,21 +174,22 @@
             border-radius: 16px;
             overflow: hidden;
             transition: all 0.35s ease;
-            cursor: pointer;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
         .product-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-5px);
             border-color: var(--border-focus);
             box-shadow: 0 16px 32px rgba(0,0,0,0.06);
         }
         .img-wrap {
-            height: 330px;
+            height: 320px;
             background: #EDEAE4;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
         .img-wrap img {
             width: 100%; height: 100%; object-fit: cover;
@@ -141,7 +200,7 @@
         .badge-tag {
             position: absolute;
             top: 14px; left: 14px;
-            background: rgba(21, 22, 20, 0.85);
+            background: rgba(21, 22, 20, 0.88);
             color: #FFF;
             backdrop-filter: blur(8px);
             font-size: 10px;
@@ -150,10 +209,17 @@
             font-weight: 700;
             padding: 5px 12px;
             border-radius: 20px;
+            z-index: 2;
         }
         .badge-agotado { background: #B33927; }
 
-        .card-details { padding: 22px; }
+        .card-details { 
+            padding: 20px; 
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
         .card-meta {
             display: flex;
             justify-content: space-between;
@@ -162,54 +228,90 @@
             letter-spacing: 1.5px;
             color: var(--accent-bronze);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 500;
             margin-bottom: 12px;
             line-height: 1.35;
             color: var(--text-primary);
+            cursor: pointer;
+        }
+        .card-pricing-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-subtle);
         }
         .card-pricing {
             display: flex;
             align-items: baseline;
-            gap: 10px;
+            gap: 8px;
         }
         .price-current {
-            font-size: 19px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--text-primary);
         }
         .price-strike {
-            font-size: 14px;
+            font-size: 13px;
             color: #9E9D96;
             text-decoration: line-through;
         }
 
-        /* --- 6. DRAWER MODAL / FICHA TÉCNICA LATERAL --- */
+        .btn-add-cart-card {
+            background: var(--bg-washi);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+        }
+        .btn-add-cart-card:hover {
+            background: var(--text-primary);
+            color: #FFFFFF;
+            border-color: var(--text-primary);
+        }
+        .btn-add-cart-card.disabled {
+            background: #EDEAE4;
+            color: #A09E96;
+            border-color: transparent;
+            cursor: not-allowed;
+        }
+
+        /* --- OVERLAY COMPARTIDO (FICHA Y CARRITO) --- */
         .drawer-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.55);
             backdrop-filter: blur(8px);
             z-index: 2000;
             opacity: 0; pointer-events: none;
             transition: opacity 0.35s ease;
         }
         .drawer-overlay.active { opacity: 1; pointer-events: all; }
-        
+
+        /* --- 1. DRAWER FICHA TÉCNICA (QUICK-VIEW EXISTENTE) --- */
         .drawer-sheet {
             position: fixed;
-            top: 0; right: -500px;
+            top: 0; right: -520px;
             width: 100%; max-width: 480px;
             height: 100%;
             background: var(--surface);
             z-index: 2001;
             box-shadow: -10px 0 40px rgba(0,0,0,0.2);
             transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 40px 30px;
+            padding: 35px 28px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -217,48 +319,222 @@
         }
         .drawer-sheet.active { right: 0; }
         .drawer-close {
-            position: absolute; top: 25px; right: 25px;
+            position: absolute; top: 22px; right: 22px;
             background: none; border: none; font-size: 20px;
             cursor: pointer; color: var(--text-secondary);
         }
         .drawer-img {
-            width: 100%; height: 340px;
+            width: 100%; height: 320px;
             border-radius: 12px;
-            margin: 20px 0;
+            margin: 18px 0;
             object-fit: cover;
         }
-        .btn-whatsapp-drawer {
-            background: var(--text-primary);
-            color: #FFF;
-            padding: 18px;
-            border-radius: 40px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 1.5px;
+
+        /* --- 2. DRAWER CARRITO DE COMPRAS + CHECKOUT --- */
+        .cart-sheet {
+            position: fixed;
+            top: 0; right: -550px;
+            width: 100%; max-width: 500px;
+            height: 100%;
+            background: var(--surface);
+            z-index: 2002;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.25);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .cart-sheet.active { right: 0; }
+
+        .cart-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .cart-items-body {
+            padding: 20px 28px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        
+        .cart-item-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .cart-item-row:last-child { border-bottom: none; }
+        .cart-item-img {
+            width: 65px; height: 65px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #EDEAE4;
+            flex-shrink: 0;
+        }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+        .cart-item-price { font-size: 13.5px; font-weight: 700; color: var(--accent-bronze-dark); }
+        
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .qty-btn {
+            background: var(--bg-washi);
+            border: 1px solid var(--border-subtle);
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .qty-num { font-size: 13px; font-weight: 600; min-width: 18px; text-align: center; }
+        .cart-item-del {
+            background: none; border: none;
+            color: #B33927;
+            font-size: 15px;
+            cursor: pointer;
+            padding: 6px;
+            transition: transform 0.2s;
+        }
+        .cart-item-del:hover { transform: scale(1.15); }
+
+        /* FORMULARIO DE CHECKOUT DENTRO DEL CARRITO */
+        .checkout-box {
+            background: var(--bg-washi);
+            border-top: 1px solid var(--border-subtle);
+            padding: 20px 28px;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
+            max-height: 52vh;
+            overflow-y: auto;
+        }
+        .checkout-title {
+            font-size: 11px;
+            letter-spacing: 2px;
             text-transform: uppercase;
+            font-weight: 700;
+            color: var(--accent-bronze);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .option-label {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 12.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-label:hover { border-color: var(--border-focus); }
+        .option-label input[type="radio"] { accent-color: var(--text-primary); }
+
+        .checkout-input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-subtle);
+            background: var(--surface);
+            font-family: inherit;
+            font-size: 12.5px;
+            outline: none;
+            margin-bottom: 10px;
+        }
+        .checkout-input:focus { border-color: var(--text-primary); }
+
+        .cart-summary {
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-subtle);
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            color: var(--text-secondary);
+        }
+        .summary-row.total {
+            font-size: 17px;
+            font-weight: 800;
+            color: var(--text-primary);
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 8px;
+            margin-top: 8px;
+        }
+
+        .btn-confirm-wa {
+            background: var(--whatsapp);
+            color: #FFFFFF;
+            width: 100%;
+            padding: 15px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 800;
+            font-size: 13.5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            margin-top: 14px;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
         }
-        .btn-whatsapp-drawer:hover { background: var(--accent-forest); }
+        .btn-confirm-wa:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-2px);
+        }
 
+        /* RESPONSIVE MÓVIL */
         @media (max-width: 600px) {
-            .drawer-sheet { max-width: 100%; top: auto; bottom: -100%; right: 0; height: 90vh; border-radius: 24px 24px 0 0; transition: bottom 0.4s ease; }
-            .drawer-sheet.active { bottom: 0; right: 0; }
+            .drawer-sheet, .cart-sheet {
+                max-width: 100%;
+                top: auto; bottom: -100%; right: 0;
+                height: 92vh;
+                border-radius: 24px 24px 0 0;
+                transition: bottom 0.4s ease;
+            }
+            .drawer-sheet.active, .cart-sheet.active { bottom: 0; right: 0; }
+            .catalog-controls { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .checkout-box { max-height: 46vh; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVEGACIÓN -->
+    <!-- BARRA SUPERIOR -->
     <header class="top-nav">
         <a href="index.html" class="brand-title">MATEMI</a>
-        <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px;">
-            <a href="index.html" style="color: var(--text-secondary); margin-right: 18px;">INICIO</a>
-            <a href="https://wa.me/5491154251118" target="_blank" style="color: var(--accent-bronze);">CONSULTAS</a>
+        <div class="nav-actions">
+            <a href="index.html" class="nav-link-subtle">Inicio</a>
+            <!-- Botón flotante del Carrito -->
+            <button class="cart-pill-btn" onclick="abrirCarrito()">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Bolsa</span>
+                <span class="cart-count-badge" id="cartCountBadge">0</span>
+            </button>
         </div>
     </header>
 
@@ -280,43 +556,118 @@
         </select>
     </div>
 
-    <!-- CONTENEDOR DE PRODUCTOS -->
+    <!-- GRILLA DINÁMICA DE PRODUCTOS -->
     <main class="shop-container">
         <div class="products-grid" id="productosGrid"></div>
     </main>
 
-    <!-- DRAWER LATERAL (FICHA TÉCNICA AL TOCAR EL PRODUCTO) -->
-    <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarFicha()"></div>
+    <!-- OVERLAY COMPARTIDO OSCURO -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarTodo()"></div>
+
+    <!-- 1. DRAWER FICHA TÉCNICA (QUICK-VIEW EXISTENTE) -->
     <div class="drawer-sheet" id="drawerSheet">
         <button class="drawer-close" onclick="cerrarFicha()"><i class="fas fa-times"></i></button>
         <div>
             <span id="drawerCat" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-bronze); font-weight: 700;"></span>
-            <h2 id="drawerTitle" style="font-family: 'Playfair Display', serif; font-size: 26px; margin: 8px 0 12px;"></h2>
+            <h2 id="drawerTitle" style="font-family: 'Playfair Display', serif; font-size: 26px; margin: 8px 0 10px;"></h2>
             <div id="drawerPrice" style="font-size: 22px; font-weight: 700; margin-bottom: 15px;"></div>
             <img id="drawerImg" class="drawer-img" src="" alt="Producto">
             <p id="drawerDesc" style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;"></p>
             
             <div style="background: var(--bg-washi); padding: 16px; border-radius: 12px; font-size: 12px; margin-bottom: 25px;">
-                <p><strong>• Artesanía:</strong> Cincelado tradicional hecho a mano.</p>
+                <p><strong>• Artesanía:</strong> Cincelado tradicional en alpaca y cuero vacuno.</p>
                 <p style="margin-top: 5px;"><strong>• Origen:</strong> Buenos Aires, Argentina.</p>
             </div>
         </div>
-        <a id="drawerBtnWa" href="#" target="_blank" class="btn-whatsapp-drawer">
-            <i class="fab fa-whatsapp"></i>
-            <span>Consultar Disponibilidad</span>
-        </a>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button id="drawerBtnAddCart" class="btn-confirm-wa" style="background: var(--text-primary);" onclick="agregarDesdeDrawer()">
+                <i class="fas fa-shopping-bag"></i> Agregar a mi Bolsa
+            </button>
+            <a id="drawerBtnWa" href="#" target="_blank" style="text-align: center; font-size: 12px; font-weight: 700; color: var(--text-secondary); padding: 6px;">
+                Consultar pieza por WhatsApp
+            </a>
+        </div>
     </div>
 
-    <!-- SCRIPTS CON SANITIZACIÓN & FILTROS -->
+    <!-- 2. DRAWER DEL CARRITO + CHECKOUT COMPLETO -->
+    <div class="cart-sheet" id="cartSheet">
+        <div class="cart-header">
+            <h3>Bolsa de Pedido</h3>
+            <button class="drawer-close" onclick="cerrarCarrito()"><i class="fas fa-times"></i></button>
+        </div>
+
+        <!-- LISTA DE PRODUCTOS SELECCIONADOS -->
+        <div class="cart-items-body" id="cartItemsList">
+            <!-- Inyectados por JavaScript desde localStorage -->
+        </div>
+
+        <!-- FORMULARIO DE CHECKOUT -->
+        <div class="checkout-box" id="checkoutSection">
+            <span class="checkout-title">1. Forma de Entrega</span>
+            <div class="option-group">
+                <label class="option-label">
+                    <input type="radio" name="entrega" value="Retiro en Estudio Devoto (Pedro Lozano 3918)" checked onchange="actualizarResumen()">
+                    <span>Retiro sin costo — Estudio Devoto</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="entrega" value="Mensajería CABA / GBA" onchange="actualizarResumen()">
+                    <span>Mensajería en el día — CABA / GBA</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="entrega" value="Envío Correo Argentino a Domicilio" onchange="actualizarResumen()">
+                    <span>Envío Nacional — Correo Argentino</span>
+                </label>
+            </div>
+
+            <span class="checkout-title">2. Método de Pago</span>
+            <div class="option-group">
+                <label class="option-label">
+                    <input type="radio" name="pago" value="Transferencia / Efectivo (10% OFF)" checked onchange="actualizarResumen()">
+                    <span><strong>Transferencia / Efectivo</strong> (10% OFF automático)</span>
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="pago" value="Tarjetas / Mercado Pago (3 Cuotas sin interés)" onchange="actualizarResumen()">
+                    <span>Tarjetas / Mercado Pago (3 Cuotas)</span>
+                </label>
+            </div>
+
+            <span class="checkout-title">3. Tus Datos para el Pedido</span>
+            <input type="text" id="clienteNombre" class="checkout-input" placeholder="Nombre y Apellido *" required>
+            <input type="text" id="clienteDireccion" class="checkout-input" placeholder="Dirección / Localidad (Si precisás envío)">
+            <input type="text" id="clienteNota" class="checkout-input" placeholder="Aclaraciones (Ej: iniciales grabadas, etc.)">
+
+            <!-- RESUMEN FINANCIERO -->
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="sumSubtotal">$0</span>
+                </div>
+                <div class="summary-row" id="rowDescuento" style="color: var(--whatsapp-dark);">
+                    <span>Descuento Transferencia (10%):</span>
+                    <span id="sumDescuento">-$0</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total a Pagar:</span>
+                    <span id="sumTotal">$0</span>
+                </div>
+            </div>
+
+            <button class="btn-confirm-wa" onclick="enviarPedidoWhatsApp()">
+                <i class="fab fa-whatsapp"></i> Confirmar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- SCRIPTS CON CARRITO, LOCALSTORAGE, SANITIZACIÓN & FILTROS -->
     <script>
-        // Sanitizador estricto contra scripts e inyecciones
+        // --- 1. SANITIZACIÓN ESTRICTA ---
         function sanitizar(txt) {
             if (!txt) return '';
             return String(txt)
                 .replace(/<[^>]*>?/gm, '')
                 .replace(/["'`\\;{}()[\]]/g, '')
                 .trim()
-                .slice(0, 75);
+                .slice(0, 80);
         }
 
         function escaparHTML(txt) {
@@ -331,12 +682,29 @@
             style: 'currency', currency: 'ARS', maximumFractionDigits: 0 
         }).format(n);
 
+        // --- 2. ESTADO GLOBAL ---
         let catalogo = [];
         let productos = [];
         let catActual = 'todas';
         let ordenActual = 'destacados';
+        let productoEnFicha = null;
 
+        // CARRITO DESDE LOCALSTORAGE
+        let carrito = JSON.parse(localStorage.getItem('matemi_cart_v1')) || [];
+
+        function guardarCarrito() {
+            localStorage.setItem('matemi_cart_v1', JSON.stringify(carrito));
+            actualizarBadgeCarrito();
+        }
+
+        function actualizarBadgeCarrito() {
+            const count = carrito.reduce((acc, item) => acc + item.qty, 0);
+            document.getElementById('cartCountBadge').textContent = count;
+        }
+
+        // --- 3. INICIALIZACIÓN Y CARGA ---
         async function init() {
+            actualizarBadgeCarrito();
             const params = new URLSearchParams(window.location.search);
             const catUrl = params.get('cat');
             if (catUrl) catActual = catUrl;
@@ -355,6 +723,7 @@
 
                         productos.push({
                             ...p,
+                            idUnico: (c.id + '-' + p.nombre).replace(/\s+/g, '-').toLowerCase(),
                             catId: c.id,
                             catNombre: c.nombre,
                             precioFinal: final,
@@ -392,6 +761,7 @@
             renderCards();
         }
 
+        // --- 4. RENDER DE TARJETAS ---
         function renderCards() {
             const grid = document.getElementById('productosGrid');
             const cont = document.getElementById('contadorProductos');
@@ -411,60 +781,253 @@
                 return;
             }
 
-            grid.innerHTML = list.map((p, idx) => {
+            grid.innerHTML = list.map((p) => {
                 let badge = '';
                 if (p.agotado) badge = `<span class="badge-tag badge-agotado">Agotado</span>`;
                 else if (p.descNum > 0) badge = `<span class="badge-tag">${p.descNum}% OFF</span>`;
 
                 const tachado = (p.descNum > 0 && !p.agotado) ? `<span class="price-strike">${formatearMoneda(p.baseNum)}</span>` : '';
 
+                const btnCarritoHtml = p.agotado 
+                    ? `<button class="btn-add-cart-card disabled" disabled>Agotado</button>`
+                    : `<button class="btn-add-cart-card" onclick="event.stopPropagation(); agregarAlCarritoPorId('${p.idUnico}')"><i class="fas fa-plus"></i> Bolsa</button>`;
+
                 return `
-                <article class="product-card" onclick="abrirFicha('${escaparHTML(p.nombre)}', '${escaparHTML(p.catNombre)}', '${formatearMoneda(p.precioFinal)}', 'assets/uploads/${escaparHTML(p.foto)}', '${escaparHTML(p.descripcion || '')}', ${p.agotado})">
+                <article class="product-card" onclick="abrirFichaPorId('${p.idUnico}')">
                     <div class="img-wrap">
                         ${badge}
                         <img src="assets/uploads/${escaparHTML(p.foto)}" alt="${escaparHTML(p.nombre)}" loading="lazy">
                     </div>
                     <div class="card-details">
-                        <div class="card-meta">
-                            <span>${escaparHTML(p.catNombre)}</span>
-                            <span>⭐ ${escaparHTML(p.rating || '5.0')}</span>
+                        <div>
+                            <div class="card-meta">
+                                <span>${escaparHTML(p.catNombre)}</span>
+                                <span>⭐ ${escaparHTML(p.rating || '5.0')}</span>
+                            </div>
+                            <h3 class="card-title">${escaparHTML(p.nombre)}</h3>
                         </div>
-                        <h3 class="card-title">${escaparHTML(p.nombre)}</h3>
-                        <div class="card-pricing">
-                            <span class="price-current">${formatearMoneda(p.precioFinal)}</span>
-                            ${tachado}
+                        <div class="card-pricing-row">
+                            <div class="card-pricing">
+                                <span class="price-current">${formatearMoneda(p.precioFinal)}</span>
+                                ${tachado}
+                            </div>
+                            ${btnCarritoHtml}
                         </div>
                     </div>
                 </article>`;
             }).join('');
         }
 
-        // CONTROL DEL DRAWER / FICHA TÉCNICA
-        function abrirFicha(nombre, cat, precio, foto, desc, agotado) {
-            document.getElementById('drawerTitle').textContent = nombre;
-            document.getElementById('drawerCat').textContent = cat;
-            document.getElementById('drawerPrice').textContent = precio;
-            document.getElementById('drawerImg').src = foto;
-            document.getElementById('drawerDesc').textContent = desc || "Pieza única trabajada con técnicas ancestrales de orfebrería y cuero vacuno de primera selección.";
+        // --- 5. FICHA TÉCNICA (QUICK-VIEW EXISTENTE) ---
+        function abrirFichaPorId(idUnico) {
+            const p = productos.find(item => item.idUnico === idUnico);
+            if (!p) return;
+            productoEnFicha = p;
+
+            document.getElementById('drawerTitle').textContent = p.nombre;
+            document.getElementById('drawerCat').textContent = p.catNombre;
+            document.getElementById('drawerPrice').textContent = formatearMoneda(p.precioFinal);
+            document.getElementById('drawerImg').src = 'assets/uploads/' + p.foto;
+            document.getElementById('drawerDesc').textContent = p.descripcion || "Pieza única trabajada con técnicas ancestrales de orfebrería y cuero vacuno de primera selección.";
             
+            const btnAdd = document.getElementById('drawerBtnAddCart');
             const btnWa = document.getElementById('drawerBtnWa');
-            if (agotado) {
-                btnWa.style.background = "#777";
-                btnWa.textContent = "Pieza Agotada";
-                btnWa.href = `https://wa.me/5491154251118?text=${encodeURIComponent('Hola! Quisiera consultar cuándo reingresa: ' + sanitizar(nombre))}`;
+
+            if (p.agotado) {
+                btnAdd.style.display = "none";
+                btnWa.textContent = "Consultar reingreso por WhatsApp";
+                btnWa.href = `https://wa.me/5491154251118?text=${encodeURIComponent('Hola! Quisiera consultar cuándo reingresa: ' + sanitizar(p.nombre))}`;
             } else {
-                btnWa.style.background = "var(--text-primary)";
-                btnWa.innerHTML = `<i class="fab fa-whatsapp"></i> Solicitar Pieza por WhatsApp`;
-                btnWa.href = `https://wa.me/5491154251118?text=${encodeURIComponent('Hola! Quiero adquirir la pieza exclusiva: ' + sanitizar(nombre))}`;
+                btnAdd.style.display = "flex";
+                btnWa.textContent = "Consultar dudas por WhatsApp";
+                btnWa.href = `https://wa.me/5491154251118?text=${encodeURIComponent('Hola! Tengo una consulta sobre la pieza: ' + sanitizar(p.nombre))}`;
             }
 
             document.getElementById('drawerOverlay').classList.add('active');
             document.getElementById('drawerSheet').classList.add('active');
         }
 
+        function agregarDesdeDrawer() {
+            if (productoEnFicha && !productoEnFicha.agotado) {
+                agregarAlCarrito(productoEnFicha);
+                cerrarFicha();
+                abrirCarrito();
+            }
+        }
+
         function cerrarFicha() {
-            document.getElementById('drawerOverlay').classList.remove('active');
             document.getElementById('drawerSheet').classList.remove('active');
+            if (!document.getElementById('cartSheet').classList.contains('active')) {
+                document.getElementById('drawerOverlay').classList.remove('active');
+            }
+        }
+
+        // --- 6. GESTIÓN DEL CARRITO ---
+        function agregarAlCarritoPorId(idUnico) {
+            const p = productos.find(item => item.idUnico === idUnico);
+            if (p) {
+                agregarAlCarrito(p);
+                abrirCarrito();
+            }
+        }
+
+        function agregarAlCarrito(producto) {
+            const existe = carrito.find(item => item.idUnico === producto.idUnico);
+            if (existe) {
+                existe.qty += 1;
+            } else {
+                carrito.push({
+                    idUnico: producto.idUnico,
+                    nombre: producto.nombre,
+                    precio: producto.precioFinal,
+                    foto: producto.foto,
+                    qty: 1
+                });
+            }
+            guardarCarrito();
+        }
+
+        function cambiarCantidad(idUnico, delta) {
+            const item = carrito.find(i => i.idUnico === idUnico);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                eliminarDelCarrito(idUnico);
+            } else {
+                guardarCarrito();
+                renderCarrito();
+            }
+        }
+
+        function eliminarDelCarrito(idUnico) {
+            carrito = carrito.filter(i => i.idUnico !== idUnico);
+            guardarCarrito();
+            renderCarrito();
+        }
+
+        function abrirCarrito() {
+            cerrarFicha();
+            renderCarrito();
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.getElementById('cartSheet').classList.add('active');
+        }
+
+        function cerrarCarrito() {
+            document.getElementById('cartSheet').classList.remove('active');
+            document.getElementById('drawerOverlay').classList.remove('active');
+        }
+
+        function cerrarTodo() {
+            cerrarFicha();
+            cerrarCarrito();
+        }
+
+        // DIBUJAR CONTENIDO DEL CARRITO
+        function renderCarrito() {
+            const listEl = document.getElementById('cartItemsList');
+            const checkoutBox = document.getElementById('checkoutSection');
+
+            if (carrito.length === 0) {
+                listEl.innerHTML = `
+                    <div style="text-align: center; padding: 60px 20px; color: var(--text-secondary);">
+                        <i class="fas fa-shopping-bag" style="font-size: 38px; color: #D0CDC5; margin-bottom: 15px;"></i>
+                        <p style="font-size: 15px; font-weight: 600; color: var(--text-primary);">Tu bolsa está vacía</p>
+                        <p style="font-size: 13px; margin-top: 5px;">Explorá nuestras piezas artesanales y agregalas a tu pedido.</p>
+                    </div>
+                `;
+                checkoutBox.style.display = "none";
+                return;
+            }
+
+            checkoutBox.style.display = "block";
+            listEl.innerHTML = carrito.map(item => `
+                <div class="cart-item-row">
+                    <img src="assets/uploads/${escaparHTML(item.foto)}" class="cart-item-img" alt="${escaparHTML(item.nombre)}">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${escaparHTML(item.nombre)}</div>
+                        <div class="cart-item-price">${formatearMoneda(item.precio)}</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-btn" onclick="cambiarCantidad('${item.idUnico}', -1)">-</button>
+                            <span class="qty-num">${item.qty}</span>
+                            <button class="qty-btn" onclick="cambiarCantidad('${item.idUnico}', 1)">+</button>
+                        </div>
+                    </div>
+                    <button class="cart-item-del" onclick="eliminarDelCarrito('${item.idUnico}')" title="Eliminar">
+                        <i class="far fa-trash-alt"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            actualizarResumen();
+        }
+
+        // CÁLCULO DE TOTALES Y DESCUENTOS EN VIVO
+        function actualizarResumen() {
+            const subtotal = carrito.reduce((acc, item) => acc + (item.precio * item.qty), 0);
+            const pagoSeleccionado = document.querySelector('input[name="pago"]:checked')?.value || '';
+            const esTransferencia = pagoSeleccionado.includes('Transferencia');
+
+            let descuento = 0;
+            if (esTransferencia && subtotal > 0) {
+                descuento = Math.round(subtotal * 0.10); // 10% OFF
+            }
+
+            const total = subtotal - descuento;
+
+            document.getElementById('sumSubtotal').textContent = formatearMoneda(subtotal);
+            document.getElementById('rowDescuento').style.display = esTransferencia ? 'flex' : 'none';
+            document.getElementById('sumDescuento').textContent = '-' + formatearMoneda(descuento);
+            document.getElementById('sumTotal').textContent = formatearMoneda(total);
+        }
+
+        // --- 7. DISPARADOR DEL TICKET DE COMPRA A WHATSAPP ---
+        function enviarPedidoWhatsApp() {
+            if (carrito.length === 0) return;
+
+            const nombre = sanitizar(document.getElementById('clienteNombre').value);
+            if (!nombre) {
+                alert('Por favor completá tu Nombre y Apellido para preparar el pedido.');
+                document.getElementById('clienteNombre').focus();
+                return;
+            }
+
+            const direccion = sanitizar(document.getElementById('clienteDireccion').value);
+            const nota = sanitizar(document.getElementById('clienteNota').value);
+            const entrega = document.querySelector('input[name="entrega"]:checked')?.value || 'A coordinar';
+            const pago = document.querySelector('input[name="pago"]:checked')?.value || 'A coordinar';
+
+            const subtotal = carrito.reduce((acc, item) => acc + (item.precio * item.qty), 0);
+            const esTransferencia = pago.includes('Transferencia');
+            const descuento = esTransferencia ? Math.round(subtotal * 0.10) : 0;
+            const total = subtotal - descuento;
+
+            // ARMADO DEL TICKET CON SANITIZACIÓN
+            let msg = `🌿 *NUEVO PEDIDO — MATEMI* 🌿\n`;
+            msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            msg += `👤 *Cliente:* ${nombre}\n`;
+            msg += `📍 *Entrega:* ${entrega}\n`;
+            if (direccion) msg += `🏠 *Dirección/Destino:* ${direccion}\n`;
+            msg += `💳 *Pago:* ${pago}\n`;
+            msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            msg += `🛒 *DETALLE DEL PEDIDO:*\n`;
+
+            carrito.forEach(i => {
+                msg += `• ${i.qty}x ${sanitizar(i.nombre)} (${formatearMoneda(i.precio * i.qty)})\n`;
+            });
+
+            msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            msg += `Subtotal: ${formatearMoneda(subtotal)}\n`;
+            if (descuento > 0) {
+                msg += `Descuento (10% OFF): -${formatearMoneda(descuento)}\n`;
+            }
+            msg += `💰 *TOTAL A PAGAR: ${formatearMoneda(total)}*\n`;
+            msg += `━━━━━━━━━━━━━━━━━━━━━\n`;
+            if (nota) msg += `📝 *Nota:* ${nota}\n`;
+            msg += `Hola! Quiero confirmar este pedido y coordinar el pago. Gracias!`;
+
+            // Abre el chat con el número de MATEMI
+            const urlFinal = `https://wa.me/5491154251118?text=${encodeURIComponent(msg)}`;
+            window.open(urlFinal, '_blank');
         }
 
         document.addEventListener('DOMContentLoaded', init);
