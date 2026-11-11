@@ -3,217 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATEMI | Excelencia Superior</title>
-    <!-- Fuentes y conectores -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>MATEMI — Objetos de Culto & Arte Matero</title>
     
+    <!-- Fuentes de alta gama -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        :root { 
-            --verde-matemi: #3D5021; 
-            --verde-claro: #5A7336; 
-            --verde-oscuro: #2D4A22;
-            --texto: #333333; 
-            --blanco: #FDFBF7;
-            --marron-tierra: #6B4423;
+        :root {
+            --bg-washi: #F7F5F0;
+            --surface: #FFFFFF;
+            --text-primary: #151614;
+            --text-secondary: #6B6A66;
+            --accent-forest: #222D1E;
+            --accent-olive: #3D4F33;
+            --accent-bronze: #9E8256;
+            --border-subtle: rgba(21, 22, 20, 0.08);
+            --border-focus: rgba(21, 22, 20, 0.25);
+            --shadow-float: 0 20px 40px -15px rgba(21, 22, 20, 0.07);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', sans-serif; color: var(--texto); overflow-x: hidden; background-color: var(--blanco); }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg-washi); 
+            color: var(--text-primary); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            -webkit-font-smoothing: antialiased;
+        }
+
         a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; object-fit: cover; }
 
-        /* HEADER DEL HIJO */
-        header {
-            position: absolute; top: 0; width: 100%; padding: 20px 5%;
-            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        /* --- 1. MENÚ FLOTANTE TIPO CÁPSULA (DYNAMIC ISLAND) --- */
+        .nav-wrapper {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            padding: 0 20px;
         }
-        .logo img { height: 60px; border-radius: 50%; border: 2px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 600; color: white; text-transform: uppercase;}
-        .nav-links a { position: relative; padding: 5px 0; transition: color 0.3s ease; }
-        .nav-links a:hover { color: #f0c29a; }
-
-        /* HERO DEL HIJO */
-        .hero {
-            height: 100vh;
-            /* APUNTA A LA CARPETA ASSETS/UPLOADS */
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), url('hero.jpg') center/cover fixed;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            color: white; text-align: center; padding: 0 20px;
+        .nav-capsule {
+            background: rgba(247, 245, 240, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            border-radius: 100px;
+            padding: 8px 18px 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            transition: all 0.3s ease;
         }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 80px; letter-spacing: 15px; margin-bottom: 20px; }
-        .hero p { font-size: 20px; font-style: italic; max-width: 700px; margin-bottom: 40px; font-family: 'Playfair Display', serif;}
-        .btn-hero { background: var(--verde-claro); padding: 15px 40px; border-radius: 30px; font-weight: bold; color: white; transition: 0.3s; box-shadow: 0 8px 25px rgba(0,0,0,0.3);}
-        .btn-hero:hover { background: var(--verde-matemi); transform: translateY(-4px); }
+        .nav-capsule:hover {
+            border-color: var(--border-focus);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        .brand-pill {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .brand-pill img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
+        }
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-cta {
+            background: var(--text-primary);
+            color: var(--bg-washi);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-cta:hover { background: var(--accent-olive); }
 
-        /* TÍTULOS DE SECCIÓN */
-        .section-title { text-align: center; margin: 70px 0 40px; color: var(--verde-matemi); font-size: 32px; font-family: 'Playfair Display', serif; }
+        /* --- 2. HERO EDITORIAL --- */
+        .hero-editorial {
+            min-height: 100vh;
+            padding: 140px 6% 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-stamp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-bronze);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+        .hero-stamp::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--accent-bronze);
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(44px, 7vw, 92px);
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+            font-weight: 500;
+            max-width: 950px;
+            margin-bottom: 30px;
+        }
+        .hero-title em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--accent-olive);
+        }
+        .hero-bottom-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: flex-end;
+            margin-top: 20px;
+        }
+        .hero-desc {
+            font-size: 17px;
+            color: var(--text-secondary);
+            max-width: 500px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+        .btn-editorial {
+            background: var(--text-primary);
+            color: var(--bg-washi);
+            padding: 18px 36px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        .btn-editorial:hover {
+            background: var(--accent-forest);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
 
-        /* SECCIÓN CATEGORÍAS (DINÁMICA) */
-        .categorias-sec { padding: 80px 5%; text-align: center; background: #FAFAF8; }
-        .cat-grid { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 20px; scrollbar-width: none; scroll-snap-type: x mandatory;}
-        .cat-grid::-webkit-scrollbar { display: none; }
-        
-        .cat-card { min-width: 280px; background: white; border-radius: 10px; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; scroll-snap-align: start;}
-        .cat-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .cat-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        .cat-card h3 { font-family: 'Playfair Display', serif; color: var(--verde-matemi); font-size: 22px; margin-bottom: 15px; }
-        .btn-cat { display: block; background: var(--verde-matemi); color: white; padding: 12px; border-radius: 6px; font-weight: 600; transition: 0.3s;}
-        .btn-cat:hover { background: var(--marron-tierra); }
+        /* --- 3. BENTO GRID DE MARCA (2026 LAYOUT) --- */
+        .section-wrap { padding: 90px 6%; max-width: 1400px; margin: 0 auto; }
+        .eyebrow {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-bronze);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+        .section-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 50px;
+        }
 
-        /* INFO ÚTIL (Mantuvimos la original) */
-        .info-section { padding: 70px 5% 80px 5%; background-color: var(--blanco); }
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; max-width: 1200px; margin: 0 auto; }
-        .info-card { background: white; padding: 45px 32px; border-radius: 14px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border-top: 5px solid var(--verde-claro); transition: 0.3s; }
-        .info-card:hover { transform: translateY(-10px); }
-        .info-icon { font-size: 42px; color: var(--marron-tierra); margin-bottom: 22px; }
-        .info-card h3 { color: var(--verde-matemi); font-size: 22px; margin-bottom: 16px; font-family: 'Playfair Display', serif;}
-        .info-card p, .info-card ul { font-size: 15px; text-align: left; line-height: 1.6; color: #555;}
-        .info-card ul { list-style-type: none; margin-top: 10px; }
-        .info-card li { margin-bottom: 12px; padding-left: 20px; position: relative; }
-        .info-card li::before { content: "•"; color: var(--verde-claro); position: absolute; left: 0; font-weight: bold; font-size: 18px; }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            grid-template-rows: repeat(2, 320px);
+            gap: 24px;
+        }
+        .bento-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bento-card:hover {
+            border-color: var(--border-focus);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-float);
+        }
+        .bento-card-large {
+            grid-row: span 2;
+            background: var(--accent-forest);
+            color: #FFFFFF;
+        }
+        .bento-card-large img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            transition: transform 0.6s ease;
+        }
+        .bento-card-large:hover img { transform: scale(1.05); }
+        .bento-content-overlay {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .bento-card-badge {
+            align-self: flex-start;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        .bento-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
 
-        /* CONTACTO Y UBICACIÓN */
-        .contact-section { padding: 30px 5% 80px 5%; max-width: 1200px; margin: 0 auto;}
-        .contact-wrapper { display: flex; gap: 45px; align-items: center; }
-        .contact-info { flex: 1; background: white; padding: 35px; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
-        .contact-item { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 24px; font-size: 15.5px; }
-        .contact-item i { color: var(--verde-claro); font-size: 24px; margin-top: 3px; }
-        .contact-map { flex: 1.2; height: 380px; border-radius: 16px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
-        .contact-map iframe { width: 100%; height: 100%; border: none; }
+        /* --- 4. CATÁLOGO DINÁMICO DE CATEGORÍAS (SVELTIA HOOK) --- */
+        .cat-scroll-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .cat-card-modern {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .cat-card-modern:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-focus);
+            box-shadow: var(--shadow-float);
+        }
+        .cat-img-wrap {
+            height: 320px;
+            width: 100%;
+            background: #EDEAE4;
+            overflow: hidden;
+        }
+        .cat-img-wrap img {
+            width: 100%; height: 100%;
+            transition: transform 0.6s ease;
+        }
+        .cat-card-modern:hover .cat-img-wrap img { transform: scale(1.07); }
+        .cat-card-body {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cat-card-body h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .cat-card-body a {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--border-subtle);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        .cat-card-modern:hover .cat-card-body a {
+            background: var(--text-primary);
+            color: #FFF;
+        }
+
+        /* --- 5. SECCIÓN EL RITUAL (EDITORIAL STORYTELLING) --- */
+        .ritual-section {
+            background: #181916;
+            color: #EDEAE4;
+            padding: 120px 6%;
+            margin-top: 60px;
+        }
+        .ritual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+        .ritual-item {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            padding-top: 30px;
+        }
+        .ritual-num {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-bronze);
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .ritual-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            margin-bottom: 14px;
+            font-weight: 500;
+        }
+        .ritual-item p {
+            font-size: 14.5px;
+            color: #9C9A94;
+            line-height: 1.8;
+        }
 
         /* FOOTER */
-        footer { background-color: var(--verde-oscuro); color: white; padding: 35px 5%; text-align: center; }
-        .footer-logo { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 10px; }
-        .social-icons { margin-top: 15px; }
-        .social-icons a { color: white; margin: 0 10px; font-size: 20px; transition: 0.3s; }
-        .social-icons a:hover { color: #f0c29a; }
-
-        /* WHATSAPP FLOTANTE */
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; background-color: #25d366; color: white; border-radius: 50px; font-size: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(37,211,102,0.45); z-index: 1000; transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
+        footer {
+            background: var(--text-primary);
+            color: #A09E96;
+            padding: 70px 6% 40px;
+            font-size: 13px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 40px;
+            margin-bottom: 30px;
+        }
+        .footer-brand {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+        }
 
         /* RESPONSIVE */
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 15px; background: rgba(0,0,0,0.85); position: fixed; padding: 15px; }
-            .hero h1 { font-size: 45px; letter-spacing: 5px; }
-            .hero p { font-size: 16px; }
-            .contact-wrapper { flex-direction: column; }
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .hero-bottom-grid { grid-template-columns: 1fr; gap: 20px; }
+            .bento-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+            .bento-card-large { grid-row: auto; height: 420px; }
+            .ritual-grid { grid-template-columns: 1fr; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVEGACIÓN -->
-    <header>
-        <a href="index.html" class="logo"><img src="assets/uploads/logo.png" alt="Logo Matemi"></a>
-        <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="tienda.html">Tienda</a>
-            <a href="#info">Info Útil</a>
-            <a href="#contacto">Contacto</a>
+    <!-- MENÚ CÁPSULA FLOTANTE -->
+    <div class="nav-wrapper">
+        <nav class="nav-capsule">
+            <a href="index.html" class="brand-pill">
+                <img src="assets/uploads/logo.png" alt="MATEMI">
+                <span>MATEMI</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Inicio</a>
+                <a href="tienda.html">Catálogo</a>
+                <a href="#ritual">El Ritual</a>
+                <a href="#contacto">Estudio</a>
+            </div>
+            <a href="tienda.html" class="nav-cta">Explorar Tienda</a>
+        </nav>
+    </div>
+
+    <!-- HERO EDITORIAL -->
+    <header class="hero-editorial">
+        <span class="hero-stamp">Buenos Aires • Artesanía de Autor</span>
+        <h1 class="hero-title">El ritual cotidiano elevado a <em>objeto de arte</em>.</h1>
+        <div class="hero-bottom-grid">
+            <p class="hero-desc">
+                Piezas forjadas a mano en alpaca cincelada y calabaza seleccionada, revestidas en cuero vacuno de curtido vegetal. Una experiencia táctil concebida para durar generaciones.
+            </p>
+            <div class="hero-actions">
+                <a href="tienda.html" class="btn-editorial">
+                    <span>Ver Catálogo Completo</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- PORTADA / HERO -->
-    <div class="hero">
-        <h1>MATEMI</h1>
-        <p>"Excelencia superior en todo momento para brindarte seguridad total y una experiencia matera plena y autentica"</p>
-        <a href="tienda.html" class="btn-hero">VER PRODUCTOS</a>
-    </div>
-
-    <!-- SECCIÓN CATEGORÍAS (DINÁMICA SVELTIA) -->
-    <section class="categorias-sec">
-        <h2 class="section-title">Nuestras Categorías</h2>
-        <div class="cat-grid" id="catGrid">
-            <!-- Se cargan solas desde content/catalogo.json -->
-        </div>
-    </section>
-
-    <!-- INFO ÚTIL -->
-    <section id="info" class="info-section">
-        <h2 class="section-title">Información Útil</h2>
-        <div class="info-grid">
-            <div class="info-card">
-                <i class="fas fa-wallet info-icon"></i>
-                <h3>Métodos de Pago</h3>
-                <p>Aceptamos todas las tarjetas, transferencias bancarias y pago en efectivo para tu comodidad.</p>
-                <ul>
-                    <li><strong>10% de descuento</strong> abonando por transferencia o efectivo.</li>
-                    <li><strong>3 cuotas sin interés</strong> con tarjetas bancarizadas.</li>
-                    <li>Operamos con Mercado Pago seguro.</li>
-                </ul>
+    <!-- BENTO GRID (ESTÉTICA 2026) -->
+    <section class="section-wrap">
+        <span class="eyebrow">Manifiesto & Excelencia</span>
+        <h2 class="section-headline">Nobleza en cada detalle.</h2>
+        
+        <div class="bento-grid">
+            <!-- Tarjeta Grande Editorial -->
+            <div class="bento-card bento-card-large">
+                <img src="assets/uploads/hero.jpg" alt="Materia Prima">
+                <div class="bento-content-overlay">
+                    <span class="bento-card-badge">Pieza Insignia</span>
+                    <div>
+                        <h3>Imperial Cincelado al Lacre</h3>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 14px;">Calabaza de paredes gruesas con virola de alpaca maciza trabajada por maestros orfebres.</p>
+                    </div>
+                </div>
             </div>
-            
-            <div class="info-card">
-                <i class="fas fa-truck info-icon"></i>
-                <h3>Envíos y Entregas</h3>
-                <p>Realizamos envíos a todo el país para que tu equipo matero llegue impecable a tu casa.</p>
-                <ul>
-                    <li><strong>CABA y GBA:</strong> Envíos por motomensajería en el día o al día siguiente.</li>
-                    <li><strong>Resto del país:</strong> A través de Correo Argentino.</li>
-                    <li><strong>Retiro gratis:</strong> Podés retirar por nuestro local coordinando previamente.</li>
-                </ul>
+
+            <!-- Pastilla 2 -->
+            <div class="bento-card">
+                <div>
+                    <span class="eyebrow">Origen 100% Genuino</span>
+                    <h3>Cuero Vacuno Pesado</h3>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary);">Tratado con aceites naturales para desarrollar una pátina única y carácter con el paso del tiempo.</p>
             </div>
-            
-            <div class="info-card">
-                <i class="fas fa-calendar-alt info-icon"></i>
-                <h3>Próximas Ferias</h3>
-                <p>¡Vení a visitarnos, tocá los productos y armá tu equipo matero en persona!</p>
-                <ul>
-                    <li><strong>08 de Noviembre:</strong> Nogoyá 2402 (Agronomía) de 12:30 a 20hs.</li>
-                    <li><strong>21 de Noviembre:</strong> Colegio Cristo Rey (Villa Urquiza) de 15 a 19hs.</li>
-                    <li><strong>19 de Diciembre:</strong> Especial Navidad (Villa Urquiza) de 15 a 19hs.</li>
-                </ul>
+
+            <!-- Pastilla 3 -->
+            <div class="bento-card" style="background: #EFECE6;">
+                <div>
+                    <span class="eyebrow">Precisión en Boca</span>
+                    <h3>Alpaca & Bronce</h3>
+                </div>
+                <p style="font-size: 14px; color: var(--text-secondary);">Bombillones de tiro perfecto con filtros ranurados para evitar cualquier obstrucción.</p>
+            </div>
+
+            <!-- Pastilla 4 (Span ancho) -->
+            <div class="bento-card" style="grid-column: span 2; background: var(--surface);">
+                <div>
+                    <span class="eyebrow">Colección Limitada</span>
+                    <h3>Diseño atemporal, manufactura sin prisas</h3>
+                    <p style="font-size: 14.5px; color: var(--text-secondary); margin-top: 10px;">Cada calabaza es irrepetible en geometría y dimensión, asegurando que ninguna pieza sea idéntica a otra en el mundo.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="contact-section">
-        <h2 class="section-title">Ubicación y Contacto</h2>
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div><strong>Retiros en:</strong><br>Pedro Lozano 3918, Devoto, CABA.</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div><strong>Atención al Cliente:</strong><br>+54 9 11 54251118</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div><strong>Consultas:</strong><br>matemiok@gmail.com</div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-clock"></i>
-                    <div><strong>Horarios:</strong><br>Lunes a Viernes: 09:00 - 19:00 hs.<br>Sábados: 10:00 - 14:00 hs.</div>
-                </div>
-            </div>
+    <!-- CATEGORÍAS DINÁMICAS DESDE SVELTIA CMS -->
+    <section class="section-wrap">
+        <span class="eyebrow">Exploración por Familias</span>
+        <h2 class="section-headline">Nuestras Colecciones</h2>
+        <div class="cat-scroll-track" id="catGrid">
+            <!-- Se inyectan solas desde content/catalogo.json -->
+        </div>
+    </section>
+
+    <!-- EL RITUAL (STORYTELLING JAPÓN/ESCANDINAVO) -->
+    <section class="ritual-section" id="ritual">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <span class="eyebrow" style="color: var(--accent-bronze);">Filosofía de Vida</span>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 54px); font-weight: 400;">El Ritual del Buen Cebar</h2>
             
-            <div class="contact-map">
-                <iframe src="https://maps.google.com/maps?q=Pedro%20Lozano%203918,%20Devoto,%20CABA&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            <div class="ritual-grid">
+                <div class="ritual-item">
+                    <span class="ritual-num">I. LA INICIACIÓN</span>
+                    <h3>El Curado Natural</h3>
+                    <p>La calabaza requiere paciencia. Tres días de reposo con yerba usada permiten que los taninos cierren los poros y preparen el fruto para su primera infusión.</p>
+                </div>
+                <div class="ritual-item">
+                    <span class="ritual-num">II. LA TEMPERATURA</span>
+                    <h3>La Quietud a 78°C</h3>
+                    <p>El agua nunca debe hervir. La temperatura exacta preserva los antioxidantes de la hoja y evita el amargor prematuro de la montañita.</p>
+                </div>
+                <div class="ritual-item">
+                    <span class="ritual-num">III. LA PERMANENCIA</span>
+                    <h3>Huella del Tiempo</h3>
+                    <p>A diferencia de los objetos industriales descartables, nuestros mates mejoran su estética con los años, absorbiendo tus conversaciones y memorias.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="footer-logo">MATEMI.</div>
-        <div style="font-size: 13px; color: #ccc;">© 2026 MATEMI. Todos los derechos reservados.</div>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+    <footer id="contacto">
+        <div class="footer-inner">
+            <div class="footer-brand">MATEMI</div>
+            <div style="display: flex; gap: 20px;">
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5491154251118" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+            <p>© 2026 MATEMI. Piezas de orfebrería y cuero argentino. Devoto, CABA.</p>
+            <p style="color: #6E6D66;">Hecho para perdurar.</p>
         </div>
     </footer>
 
-    <!-- BOTÓN WHATSAPP -->
-    <a href="https://wa.me/5491154251118" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <!-- SCRIPT DE LECTURA DE CATEGORÍAS -->
+    <!-- SCRIPT DE CARGA DINÁMICA DE CATEGORÍAS -->
     <script>
         async function loadCategorias() {
             const grid = document.getElementById('catGrid');
@@ -222,14 +534,20 @@
                 const data = await res.json();
                 
                 grid.innerHTML = (data.categorias || []).map(cat => `
-                    <div class="cat-card">
-                        <img src="assets/uploads/${cat.foto_portada}" alt="${cat.nombre}">
-                        <h3>${cat.nombre}</h3>
-                        <a href="tienda.html?cat=${cat.id}" class="btn-cat">Ver Productos</a>
+                    <div class="cat-card-modern">
+                        <div class="cat-img-wrap">
+                            <img src="assets/uploads/${cat.foto_portada}" alt="${cat.nombre}" loading="lazy">
+                        </div>
+                        <div class="cat-card-body">
+                            <h4>${cat.nombre}</h4>
+                            <a href="tienda.html?cat=${cat.id}" aria-label="Ver ${cat.nombre}">
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
                 `).join('');
-            } catch (err) { 
-                grid.innerHTML = '<p>No se pudo cargar el catálogo de categorías.</p>'; 
+            } catch (err) {
+                grid.innerHTML = '<p style="color: #888;">Cargando catálogo...</p>';
             }
         }
         document.addEventListener('DOMContentLoaded', loadCategorias);

@@ -3,463 +3,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda | MATEMI</title>
+    <title>Catálogo Completo | MATEMI</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root { 
-            --verde-top: #2C3E18; 
-            --verde-matemi: #3D5021; 
-            --verde-claro: #5A7336; 
-            --crema-fondo: #FAFAF8; 
-            --gris-img: #F2EFE9; 
-            --texto: #333333; 
-            --texto-claro: #777777; 
-            --bordes: #E5E5E5; 
-            --whatsapp: #25D366; 
+        :root {
+            --bg-washi: #F7F5F0;
+            --surface: #FFFFFF;
+            --text-primary: #151614;
+            --text-secondary: #706F6A;
+            --accent-forest: #222D1E;
+            --accent-bronze: #9E8256;
+            --border-subtle: rgba(21, 22, 20, 0.08);
+            --border-focus: rgba(21, 22, 20, 0.2);
+            --whatsapp: #25D366;
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: var(--texto); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-washi); color: var(--text-primary); -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; }
 
-        /* BARRAS Y HEADER */
-        .top-bar { background-color: var(--verde-top); color: white; text-align: center; padding: 8px 15px; font-size: 12px; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid var(--bordes); background: white; position: sticky; top: 0; z-index: 100; }
-        .logo img { height: 50px; border-radius: 50%; }
-        .nav-links { display: flex; gap: 30px; font-size: 14px; font-weight: 600; text-transform: uppercase;}
-        .nav-links a:hover { color: var(--verde-claro); }
+        /* HEADER CÁPSULA */
+        .top-nav {
+            padding: 24px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-subtle);
+            background: rgba(247, 245, 240, 0.9);
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(15px);
+        }
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+        }
 
-        .page-header { text-align: center; padding: 30px 15px 20px; background-color: var(--crema-fondo); }
-        .page-title { font-family: 'Playfair Display', serif; font-size: 35px; color: var(--verde-matemi); margin-bottom: 5px; }
-        .breadcrumbs { font-size: 13px; color: var(--texto-claro); }
+        /* FILTROS Y CABECERA */
+        .catalog-header {
+            padding: 60px 6% 30px;
+            text-align: center;
+        }
+        .catalog-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 5vw, 56px);
+            font-weight: 500;
+            margin-bottom: 25px;
+        }
 
-        /* BOTONES / PESTAÑAS DE CATEGORÍA */
-        .category-pills {
+        /* PÍLDORAS DE CATEGORÍA */
+        .filter-pills {
             display: flex;
             gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
-            padding: 20px 5% 0;
-            background-color: var(--crema-fondo);
+            margin-bottom: 40px;
         }
         .pill-btn {
-            background: white;
-            border: 1px solid var(--bordes);
-            color: var(--texto);
-            padding: 8px 18px;
-            border-radius: 25px;
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 10px 22px;
+            border-radius: 40px;
             font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
         }
-        .pill-btn:hover { border-color: var(--verde-matemi); color: var(--verde-matemi); }
+        .pill-btn:hover { border-color: var(--border-focus); color: var(--text-primary); }
         .pill-btn.active {
-            background-color: var(--verde-matemi);
-            color: white;
-            border-color: var(--verde-matemi);
-            box-shadow: 0 4px 10px rgba(61, 80, 33, 0.25);
+            background: var(--text-primary);
+            color: #FFF;
+            border-color: var(--text-primary);
         }
 
-        /* CONTENEDOR TIENDA */
-        .shop-container { padding: 30px 5% 60px; max-width: 1350px; margin: 0 auto; }
-        
-        .active-filters-bar { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 25px; 
-            font-size: 14px; 
-            border-bottom: 1px solid var(--bordes); 
-            padding-bottom: 12px; 
-        }
-        .sort-select { 
-            padding: 8px 14px; 
-            border: 1px solid var(--bordes); 
-            border-radius: 6px; 
-            outline: none; 
-            font-family: 'Inter', sans-serif; 
+        /* CONTROLES SECUNDARIOS (ORDEN) */
+        .catalog-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6% 25px;
             font-size: 13px;
-            background: white;
-            color: var(--texto);
+            color: var(--text-secondary);
+        }
+        .sort-select {
+            padding: 9px 16px;
+            border-radius: 30px;
+            border: 1px solid var(--border-subtle);
+            background: var(--surface);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 13px;
+            outline: none;
             cursor: pointer;
         }
 
-        /* TARJETAS DE PRODUCTOS */
-        .products-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-            gap: 25px; 
-            margin-bottom: 40px; 
+        /* GRILLA DE PRODUCTOS ESTILO TOKIO */
+        .shop-container { padding: 0 6% 80px; max-width: 1450px; margin: 0 auto; }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
-        .product-card { 
-            background: white; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            border-radius: 8px;
+        .product-card {
+            background: var(--surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
-        .product-card:hover { transform: translateY(-5px); }
+        .product-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--border-focus);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+        }
+        .img-wrap {
+            height: 330px;
+            background: #EDEAE4;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .product-card:hover .img-wrap img { transform: scale(1.06); }
         
-        .img-box { 
-            background-color: var(--gris-img); 
-            height: 280px; 
-            border-radius: 8px; 
-            margin-bottom: 15px; 
-            position: relative; 
-            overflow: hidden; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+        .badge-tag {
+            position: absolute;
+            top: 14px; left: 14px;
+            background: rgba(21, 22, 20, 0.85);
+            color: #FFF;
+            backdrop-filter: blur(8px);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
         }
-        .img-box img { width: 100%; height: 100%; object-fit: cover; }
+        .badge-agotado { background: #B33927; }
+
+        .card-details { padding: 22px; }
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-bronze);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            line-height: 1.35;
+            color: var(--text-primary);
+        }
+        .card-pricing {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+        .price-current {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .price-strike {
+            font-size: 14px;
+            color: #9E9D96;
+            text-decoration: line-through;
+        }
+
+        /* --- 6. DRAWER MODAL / FICHA TÉCNICA LATERAL --- */
+        .drawer-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .drawer-overlay.active { opacity: 1; pointer-events: all; }
         
-        .discount-badge { 
-            position: absolute; 
-            top: 15px; 
-            left: 15px; 
-            background-color: var(--verde-matemi); 
-            color: white; 
-            padding: 4px 12px; 
-            font-size: 11px; 
-            font-weight: 600; 
-            border-radius: 15px; 
-            z-index: 10; 
+        .drawer-sheet {
+            position: fixed;
+            top: 0; right: -500px;
+            width: 100%; max-width: 480px;
+            height: 100%;
+            background: var(--surface);
+            z-index: 2001;
+            box-shadow: -10px 0 40px rgba(0,0,0,0.2);
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
         }
-        .badge-agotado { background-color: #d9534f; }
-
-        .action-buttons { 
-            position: absolute; 
-            top: 15px; 
-            right: -50px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-            transition: 0.3s ease-in-out; 
-            z-index: 20; 
+        .drawer-sheet.active { right: 0; }
+        .drawer-close {
+            position: absolute; top: 25px; right: 25px;
+            background: none; border: none; font-size: 20px;
+            cursor: pointer; color: var(--text-secondary);
         }
-        .product-card:hover .action-buttons { right: 15px; } 
-        
-        .action-btn { 
-            background: white; 
-            border: none; 
-            width: 38px; 
-            height: 38px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            font-size: 18px; 
-            cursor: pointer; 
-            box-shadow: 0 4px 8px rgba(0,0,0,0.12); 
-            color: var(--whatsapp); 
-            transition: 0.25s; 
+        .drawer-img {
+            width: 100%; height: 340px;
+            border-radius: 12px;
+            margin: 20px 0;
+            object-fit: cover;
         }
-        .action-btn:hover { background-color: var(--whatsapp); color: white; transform: scale(1.1); }
+        .btn-whatsapp-drawer {
+            background: var(--text-primary);
+            color: #FFF;
+            padding: 18px;
+            border-radius: 40px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn-whatsapp-drawer:hover { background: var(--accent-forest); }
 
-        .product-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--texto-claro); margin-bottom: 5px; }
-        .product-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--texto); line-height: 1.35; }
-        .price-new { font-size: 18px; font-weight: 700; color: #5A7336; margin-right: 10px; }
-        .price-old { font-size: 13px; color: var(--texto-claro); text-decoration: line-through; }
-
-        /* BANNER INFERIOR */
-        .features-banner { display: flex; justify-content: space-between; padding: 40px 5%; border-top: 1px solid var(--bordes); background-color: var(--crema-fondo); }
-        .feature-box { display: flex; align-items: center; gap: 15px; width: 30%; }
-        .feature-icon { font-size: 28px; }
-        .feature-text h4 { font-size: 15px; margin-bottom: 4px; }
-        .feature-text p { font-size: 12px; color: var(--texto-claro); }
-
-        /* BOTÓN WHATSAPP FLOTANTE */
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 25px; right: 25px; background-color: #25d366; color: white; border-radius: 50px; font-size: 30px; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(37,211,102,0.45); z-index: 1000; transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1); }
-
-        @media (max-width: 768px) { 
-            .nav-links { display:none; } 
-            .active-filters-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .features-banner { flex-direction: column; gap: 20px; }
-            .feature-box { width: 100%; }
+        @media (max-width: 600px) {
+            .drawer-sheet { max-width: 100%; top: auto; bottom: -100%; right: 0; height: 90vh; border-radius: 24px 24px 0 0; transition: bottom 0.4s ease; }
+            .drawer-sheet.active { bottom: 0; right: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">Envíos a todo el país | Pagá en hasta 3 cuotas sin interés</div>
-
-    <header>
-        <a href="index.html" class="logo"><img src="assets/uploads/logo.png" alt="MATEMI"></a>
-        <div class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="tienda.html" style="color: var(--verde-matemi);">Tienda</a>
-            <a href="index.html#info">Info Útil</a>
-            <a href="index.html#contacto">Contacto</a>
+    <!-- NAVEGACIÓN -->
+    <header class="top-nav">
+        <a href="index.html" class="brand-title">MATEMI</a>
+        <div style="font-size: 12px; font-weight: 600; letter-spacing: 1px;">
+            <a href="index.html" style="color: var(--text-secondary); margin-right: 18px;">INICIO</a>
+            <a href="https://wa.me/5491154251118" target="_blank" style="color: var(--accent-bronze);">CONSULTAS</a>
         </div>
     </header>
 
-    <div class="page-header">
-        <h1 class="page-title" id="tituloTienda">Catálogo Completo</h1>
-        <p class="breadcrumbs"><a href="index.html">Inicio</a> / <span id="breadcrumbCat">Tienda</span></p>
+    <!-- CABECERA DE TIENDA -->
+    <div class="catalog-header">
+        <span style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-bronze); font-weight: 700;">Colección Oficial</span>
+        <h1 id="tituloTienda">Catálogo de Piezas</h1>
+        <div class="filter-pills" id="pillsContainer"></div>
     </div>
 
-    <!-- PESTAÑAS DE CATEGORÍA DINÁMICAS -->
-    <div class="category-pills" id="pillsContainer">
-        <!-- Se generan automáticamente desde catalogo.json -->
+    <!-- CONTROLES -->
+    <div class="catalog-controls">
+        <span id="contadorProductos">Cargando catálogo...</span>
+        <select id="selectOrden" class="sort-select" onchange="cambiarOrden(this.value)">
+            <option value="destacados">Ordenar: Colección</option>
+            <option value="precio-menor">Precio: Menor a Mayor</option>
+            <option value="precio-mayor">Precio: Mayor a Menor</option>
+            <option value="descuento">Con Descuento (% OFF)</option>
+        </select>
     </div>
 
-    <section class="shop-container">
-        <!-- BARRA DE ORDENAMIENTO Y CONTEO -->
-        <div class="active-filters-bar">
-            <div id="contadorProductos" style="color: var(--texto-claro);">Cargando productos...</div>
-            <div>
-                <select id="selectOrden" class="sort-select" onchange="cambiarOrden(this.value)">
-                    <option value="destacados">Ordenar por: Destacados</option>
-                    <option value="precio-menor">Menor a mayor precio</option>
-                    <option value="precio-mayor">Mayor a menor precio</option>
-                    <option value="descuento">Mayor descuento (% OFF)</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- GRILLA DINÁMICA -->
+    <!-- CONTENEDOR DE PRODUCTOS -->
+    <main class="shop-container">
         <div class="products-grid" id="productosGrid"></div>
-    </section>
+    </main>
 
-    <!-- BENEFICIOS -->
-    <section class="features-banner">
-        <div class="feature-box">
-            <div class="feature-icon">📦</div>
-            <div class="feature-text">
-                <h4>Envíos Rápidos</h4>
-                <p>Por Correo Argentino y mensajería</p>
+    <!-- DRAWER LATERAL (FICHA TÉCNICA AL TOCAR EL PRODUCTO) -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="cerrarFicha()"></div>
+    <div class="drawer-sheet" id="drawerSheet">
+        <button class="drawer-close" onclick="cerrarFicha()"><i class="fas fa-times"></i></button>
+        <div>
+            <span id="drawerCat" style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-bronze); font-weight: 700;"></span>
+            <h2 id="drawerTitle" style="font-family: 'Playfair Display', serif; font-size: 26px; margin: 8px 0 12px;"></h2>
+            <div id="drawerPrice" style="font-size: 22px; font-weight: 700; margin-bottom: 15px;"></div>
+            <img id="drawerImg" class="drawer-img" src="" alt="Producto">
+            <p id="drawerDesc" style="font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px;"></p>
+            
+            <div style="background: var(--bg-washi); padding: 16px; border-radius: 12px; font-size: 12px; margin-bottom: 25px;">
+                <p><strong>• Artesanía:</strong> Cincelado tradicional hecho a mano.</p>
+                <p style="margin-top: 5px;"><strong>• Origen:</strong> Buenos Aires, Argentina.</p>
             </div>
         </div>
-        <div class="feature-box">
-            <div class="feature-icon">💳</div>
-            <div class="feature-text">
-                <h4>3 Cuotas Sin Interés</h4>
-                <p>O 10% OFF pagando por transferencia</p>
-            </div>
-        </div>
-        <div class="feature-box">
-            <div class="feature-icon">🌿</div>
-            <div class="feature-text">
-                <h4>Calidad Artesanal</h4>
-                <p>Materiales nobles seleccionados</p>
-            </div>
-        </div>
-    </section>
+        <a id="drawerBtnWa" href="#" target="_blank" class="btn-whatsapp-drawer">
+            <i class="fab fa-whatsapp"></i>
+            <span>Consultar Disponibilidad</span>
+        </a>
+    </div>
 
-    <!-- WHATSAPP FLOTANTE GENERAL -->
-    <a href="https://wa.me/5491154251118?text=Hola!%20Tengo%20una%20consulta%20sobre%20la%20tienda" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
+    <!-- SCRIPTS CON SANITIZACIÓN & FILTROS -->
     <script>
-        // --- 1. SEGURIDAD Y SANITIZACIÓN ---
-        // Saca scripts, etiquetas HTML, comillas y caracteres raros
-        function sanitizarParaWhatsApp(texto) {
-            if (!texto) return '';
-            return String(texto)
-                .replace(/<[^>]*>?/gm, '')       // Elimina tags HTML (<script>, <img>, etc)
-                .replace(/["'`\\;{}()[\]]/g, '')  // Elimina caracteres de inyección de código
-                .replace(/\s+/g, ' ')            // Unifica espacios en blanco
+        // Sanitizador estricto contra scripts e inyecciones
+        function sanitizar(txt) {
+            if (!txt) return '';
+            return String(txt)
+                .replace(/<[^>]*>?/gm, '')
+                .replace(/["'`\\;{}()[\]]/g, '')
                 .trim()
-                .slice(0, 70);                   // Limita largo máximo seguro
+                .slice(0, 75);
         }
 
-        // Escapa caracteres especiales antes de inyectar en el HTML
-        function escaparHTML(texto) {
-            if (!texto) return '';
-            return String(texto)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
+        function escaparHTML(txt) {
+            if (!txt) return '';
+            return String(txt)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;').replace(/"/g, '&quot;')
                 .replace(/'/g, '&#039;');
         }
 
-        const formatearMoneda = (monto) => new Intl.NumberFormat('es-AR', { 
-            style: 'currency', 
-            currency: 'ARS', 
-            maximumFractionDigits: 0 
-        }).format(monto);
+        const formatearMoneda = (n) => new Intl.NumberFormat('es-AR', { 
+            style: 'currency', currency: 'ARS', maximumFractionDigits: 0 
+        }).format(n);
 
-        // --- 2. ESTADO GLOBAL ---
-        let catalogoCompleto = [];
-        let productosPlanos = [];
-        let categoriaSeleccionada = 'todas';
-        let ordenSeleccionado = 'destacados';
+        let catalogo = [];
+        let productos = [];
+        let catActual = 'todas';
+        let ordenActual = 'destacados';
 
-        // --- 3. CARGA Y FILTRADO ---
-        async function inicializarTienda() {
+        async function init() {
             const params = new URLSearchParams(window.location.search);
             const catUrl = params.get('cat');
-            if (catUrl) categoriaSeleccionada = catUrl;
+            if (catUrl) catActual = catUrl;
 
             try {
                 const res = await fetch('content/catalogo.json?v=' + Date.now());
                 const data = await res.json();
-                catalogoCompleto = data.categorias || [];
+                catalogo = data.categorias || [];
 
-                // Aplana la lista de productos agregando el nombre de su categoría
-                productosPlanos = [];
-                catalogoCompleto.forEach(cat => {
-                    (cat.productos || []).forEach(p => {
+                productos = [];
+                catalogo.forEach(c => {
+                    (c.productos || []).forEach(p => {
                         const base = Number(p.precio_base) || 0;
                         const desc = Number(p.descuento) || 0;
                         const final = (desc > 0 && desc < 100) ? Math.round(base * (1 - (desc / 100))) : base;
 
-                        productosPlanos.push({
+                        productos.push({
                             ...p,
-                            categoriaId: cat.id,
-                            categoriaNombre: cat.nombre,
-                            precioCalculado: final,
-                            descuentoNum: desc,
-                            precioBaseNum: base
+                            catId: c.id,
+                            catNombre: c.nombre,
+                            precioFinal: final,
+                            descNum: desc,
+                            baseNum: base
                         });
                     });
                 });
 
-                renderizarBotonesCategorias();
-                aplicarFiltrosYRenderizar();
-
-            } catch (err) {
-                console.error("Error cargando el catálogo:", err);
-                document.getElementById('productosGrid').innerHTML = '<p style="text-align:center; width:100%;">No se pudo cargar el catálogo.</p>';
+                renderPills();
+                renderCards();
+            } catch (e) {
+                document.getElementById('productosGrid').innerHTML = '<p style="text-align:center; width:100%;">Error al conectar con el catálogo.</p>';
             }
         }
 
-        // Genera los botones de categorías arriba
-        function renderizarBotonesCategorias() {
+        function renderPills() {
             const container = document.getElementById('pillsContainer');
-            let pillsHtml = `
-                <button class="pill-btn ${categoriaSeleccionada === 'todas' ? 'active' : ''}" 
-                        onclick="filtrarPorCategoria('todas')">
-                    Todos
-                </button>
-            `;
-
-            catalogoCompleto.forEach(cat => {
-                const isActive = categoriaSeleccionada === cat.id ? 'active' : '';
-                pillsHtml += `
-                    <button class="pill-btn ${isActive}" 
-                            onclick="filtrarPorCategoria('${escaparHTML(cat.id)}')">
-                        ${escaparHTML(cat.nombre)}
-                    </button>
-                `;
+            let html = `<button class="pill-btn ${catActual === 'todas' ? 'active' : ''}" onclick="setCat('todas')">Colección Completa</button>`;
+            catalogo.forEach(c => {
+                html += `<button class="pill-btn ${catActual === c.id ? 'active' : ''}" onclick="setCat('${escaparHTML(c.id)}')">${escaparHTML(c.nombre)}</button>`;
             });
-
-            container.innerHTML = pillsHtml;
+            container.innerHTML = html;
         }
 
-        function filtrarPorCategoria(idCat) {
-            categoriaSeleccionada = idCat;
-            // Actualiza el botón activo visualmente
-            renderizarBotonesCategorias();
-            aplicarFiltrosYRenderizar();
-
-            // Actualiza la URL sin recargar la página
-            const nuevaUrl = idCat === 'todas' ? 'tienda.html' : `tienda.html?cat=${encodeURIComponent(idCat)}`;
-            window.history.replaceState({}, '', nuevaUrl);
+        function setCat(id) {
+            catActual = id;
+            renderPills();
+            renderCards();
+            window.history.replaceState({}, '', id === 'todas' ? 'tienda.html' : `tienda.html?cat=${encodeURIComponent(id)}`);
         }
 
-        function cambiarOrden(criterio) {
-            ordenSeleccionado = criterio;
-            aplicarFiltrosYRenderizar();
+        function cambiarOrden(val) {
+            ordenActual = val;
+            renderCards();
         }
 
-        function aplicarFiltrosYRenderizar() {
-            const tituloEl = document.getElementById('tituloTienda');
-            const breadcrumbEl = document.getElementById('breadcrumbCat');
-            const contadorEl = document.getElementById('contadorProductos');
-            const gridEl = document.getElementById('productosGrid');
+        function renderCards() {
+            const grid = document.getElementById('productosGrid');
+            const cont = document.getElementById('contadorProductos');
+            const tit = document.getElementById('tituloTienda');
 
-            // 1. Filtrar
-            let filtrados = [];
-            if (categoriaSeleccionada === 'todas') {
-                filtrados = [...productosPlanos];
-                tituloEl.textContent = 'Catálogo Completo';
-                breadcrumbEl.textContent = 'Tienda';
-            } else {
-                const catObj = catalogoCompleto.find(c => c.id === categoriaSeleccionada);
-                const nombreCat = catObj ? catObj.nombre : 'Productos';
-                filtrados = productosPlanos.filter(p => p.categoriaId === categoriaSeleccionada);
-                tituloEl.textContent = nombreCat;
-                breadcrumbEl.textContent = nombreCat;
-            }
+            let list = catActual === 'todas' ? [...productos] : productos.filter(p => p.catId === catActual);
+            tit.textContent = catActual === 'todas' ? 'Catálogo de Piezas' : (catalogo.find(c => c.id === catActual)?.nombre || 'Piezas');
 
-            // 2. Ordenar
-            if (ordenSeleccionado === 'precio-menor') {
-                filtrados.sort((a, b) => a.precioCalculado - b.precioCalculado);
-            } else if (ordenSeleccionado === 'precio-mayor') {
-                filtrados.sort((a, b) => b.precioCalculado - a.precioCalculado);
-            } else if (ordenSeleccionado === 'descuento') {
-                filtrados.sort((a, b) => (b.descuentoNum || 0) - (a.descuentoNum || 0));
-            }
+            if (ordenActual === 'precio-menor') list.sort((a,b) => a.precioFinal - b.precioFinal);
+            if (ordenActual === 'precio-mayor') list.sort((a,b) => b.precioFinal - a.precioFinal);
+            if (ordenActual === 'descuento') list.sort((a,b) => b.descNum - a.descNum);
 
-            // 3. Conteo
-            contadorEl.textContent = `Mostrando ${filtrados.length} producto${filtrados.length === 1 ? '' : 's'}`;
+            cont.textContent = `${list.length} pieza${list.length === 1 ? '' : 's'} disponible${list.length === 1 ? '' : 's'}`;
 
-            if (filtrados.length === 0) {
-                gridEl.innerHTML = '<p style="text-align:center; grid-column: 1/-1; padding: 40px 0; color: #888;">No hay productos disponibles en esta categoría.</p>';
+            if (list.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; grid-column: 1/-1; padding: 40px 0; color: #888;">No hay piezas disponibles en esta categoría.</p>';
                 return;
             }
 
-            // 4. Dibujar tarjetas
-            gridEl.innerHTML = filtrados.map(p => {
-                let badgeHtml = '';
-                if (p.agotado) {
-                    badgeHtml = `<span class="discount-badge badge-agotado">Agotado</span>`;
-                } else if (p.descuentoNum > 0) {
-                    badgeHtml = `<span class="discount-badge">${p.descuentoNum}% off</span>`;
-                }
+            grid.innerHTML = list.map((p, idx) => {
+                let badge = '';
+                if (p.agotado) badge = `<span class="badge-tag badge-agotado">Agotado</span>`;
+                else if (p.descNum > 0) badge = `<span class="badge-tag">${p.descNum}% OFF</span>`;
 
-                const precioViejoHtml = (p.descuentoNum > 0 && !p.agotado) 
-                    ? `<span class="price-old">${formatearMoneda(p.precioBaseNum)}</span>` 
-                    : '';
-
-                // Sanitización estricta del nombre para WhatsApp
-                const nombreSanitizado = sanitizarParaWhatsApp(p.nombre);
-                const mensajeWs = `Hola! Quiero comprar: ${nombreSanitizado}`;
-                const urlWhatsApp = `https://wa.me/5491154251118?text=${encodeURIComponent(mensajeWs)}`;
-
-                // Escapado para HTML visual
-                const nombreSeguro = escaparHTML(p.nombre);
-                const ratingSeguro = escaparHTML(p.rating || '5.0');
-                const catSegura = escaparHTML(p.categoriaNombre);
-                const fotoSegura = escaparHTML(p.foto);
+                const tachado = (p.descNum > 0 && !p.agotado) ? `<span class="price-strike">${formatearMoneda(p.baseNum)}</span>` : '';
 
                 return `
-                <article class="product-card">
-                    <div class="img-box">
-                        ${badgeHtml}
-                        <div class="action-buttons">
-                            <a href="${urlWhatsApp}" 
-                               target="_blank" 
-                               rel="noopener noreferrer" 
-                               class="action-btn" 
-                               title="Comprar por WhatsApp">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                        </div>
-                        <img src="assets/uploads/${fotoSegura}" alt="${nombreSeguro}" loading="lazy">
+                <article class="product-card" onclick="abrirFicha('${escaparHTML(p.nombre)}', '${escaparHTML(p.catNombre)}', '${formatearMoneda(p.precioFinal)}', 'assets/uploads/${escaparHTML(p.foto)}', '${escaparHTML(p.descripcion || '')}', ${p.agotado})">
+                    <div class="img-wrap">
+                        ${badge}
+                        <img src="assets/uploads/${escaparHTML(p.foto)}" alt="${escaparHTML(p.nombre)}" loading="lazy">
                     </div>
-                    <div class="product-info">
-                        <div class="product-meta">
-                            <span>${catSegura}</span> 
-                            <span>⭐ ${ratingSeguro}</span>
+                    <div class="card-details">
+                        <div class="card-meta">
+                            <span>${escaparHTML(p.catNombre)}</span>
+                            <span>⭐ ${escaparHTML(p.rating || '5.0')}</span>
                         </div>
-                        <h3 class="product-title">${nombreSeguro}</h3>
-                        <div class="product-pricing">
-                            <span class="price-new">${formatearMoneda(p.precioCalculado)}</span>
-                            ${precioViejoHtml}
+                        <h3 class="card-title">${escaparHTML(p.nombre)}</h3>
+                        <div class="card-pricing">
+                            <span class="price-current">${formatearMoneda(p.precioFinal)}</span>
+                            ${tachado}
                         </div>
                     </div>
                 </article>`;
             }).join('');
         }
 
-        document.addEventListener('DOMContentLoaded', inicializarTienda);
+        // CONTROL DEL DRAWER / FICHA TÉCNICA
+        function abrirFicha(nombre, cat, precio, foto, desc, agotado) {
+            document.getElementById('drawerTitle').textContent = nombre;
+            document.getElementById('drawerCat').textContent = cat;
+            document.getElementById('drawerPrice').textContent = precio;
+            document.getElementById('drawerImg').src = foto;
+            document.getElementById('drawerDesc').textContent = desc || "Pieza única trabajada con técnicas ancestrales de orfebrería y cuero vacuno de primera selección.";
+            
+            const btnWa = document.getElementById('drawerBtnWa');
+            if (agotado) {
+                btnWa.style.background = "#777";
+                btnWa.textContent = "Pieza Agotada";
+                btnWa.href = `https://wa.me/5491154251118?text=${encodeURIComponent('Hola! Quisiera consultar cuándo reingresa: ' + sanitizar(nombre))}`;
+            } else {
+                btnWa.style.background = "var(--text-primary)";
+                btnWa.innerHTML = `<i class="fab fa-whatsapp"></i> Solicitar Pieza por WhatsApp`;
+                btnWa.href = `https://wa.me/5491154251118?text=${encodeURIComponent('Hola! Quiero adquirir la pieza exclusiva: ' + sanitizar(nombre))}`;
+            }
+
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.getElementById('drawerSheet').classList.add('active');
+        }
+
+        function cerrarFicha() {
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.getElementById('drawerSheet').classList.remove('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
