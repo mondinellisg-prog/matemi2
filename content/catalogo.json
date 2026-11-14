@@ -7,9 +7,9 @@
       "productos": [
         {
           "nombre": "Imperial con virola de alpaca",
-          "precio_base": 35000,
+          "precio_base": 26500,
           "descuento": null,
-          "rating": "4.9",
+          "rating": "",
           "agotado": true,
           "foto": "bordemetal.jpg",
           "descripcion": ""
@@ -17,8 +17,8 @@
         {
           "nombre": "Roma full alpaca cincelada",
           "precio_base": 43889,
-          "descuento": 10,
-          "rating": "4.8",
+          "descuento": null,
+          "rating": "",
           "agotado": false,
           "foto": "bordemetalgordo.jpg",
           "descripcion": ""
@@ -27,7 +27,7 @@
           "nombre": "Imperial de algarrobo con virola de alpaca y dije sol de mayo",
           "precio_base": 27500,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "soldemayo.jpg",
           "descripcion": ""
@@ -36,7 +36,7 @@
           "nombre": "Torpedo borravino de cuero croco",
           "precio_base": 27000,
           "descuento": null,
-          "rating": "4.9",
+          "rating": "",
           "agotado": false,
           "foto": "bordemetalcolorado.jpg",
           "descripcion": ""
@@ -45,7 +45,7 @@
           "nombre": "Cuero avejentado con virola de alpaca cincelada al lacre",
           "precio_base": 48823,
           "descuento": 15,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "bordemetalmostaza.jpg",
           "descripcion": ""
@@ -54,7 +54,7 @@
           "nombre": "Torpedo de algarrobo con virola de alpaca",
           "precio_base": 22500,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "bordemetalredondo.jpg",
           "descripcion": ""
@@ -63,7 +63,7 @@
           "nombre": "Imperial criollo de borravino con cuero repujado",
           "precio_base": 35000,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "bordemetalapoyo.jpg",
           "descripcion": ""
@@ -72,7 +72,7 @@
           "nombre": "Ranchero vaquita animal print",
           "precio_base": 26500,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "maderavaca.jpg",
           "descripcion": ""
@@ -81,16 +81,16 @@
           "nombre": "Camionero de algarrobo",
           "precio_base": 15000,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "camionerodealgarrobo.jpg",
           "descripcion": ""
         },
         {
-          "nombre": "Imperial borrabino cuero repujado con bolitas de bronce",
+          "nombre": "Imperial borravino cuero repujado con bolitas de bronce",
           "precio_base": 42500,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "imperialborrabino.jpg",
           "descripcion": ""
@@ -99,7 +99,7 @@
           "nombre": "Camionero con virola invertida de alpaca",
           "precio_base": 32000,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "camionerovirolainvertida.jpg",
           "descripcion": ""
@@ -108,7 +108,7 @@
           "nombre": "Imperial roma de algarrobo full alpaca con bolitas de bronce",
           "precio_base": 39500,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "imperialromadealgarrobo.jpg",
           "descripcion": ""
@@ -117,25 +117,16 @@
           "nombre": "Torpedo animal print (vaquita)",
           "precio_base": 34000,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "torpedoanimalprintcuerovaquita.jpg",
-          "descripcion": ""
-        },
-        {
-          "nombre": "Imperial esquinero con bases de alpaca",
-          "precio_base": 46500,
-          "descuento": null,
-          "rating": "5.0",
-          "agotado": false,
-          "foto": "maderavaca.jpg",
           "descripcion": ""
         },
         {
           "nombre": "Imperial de alpaca cuero crudo con costura al tiento",
           "precio_base": 53500,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "imperialcolorcrudo.jpg",
           "descripcion": ""
@@ -144,7 +135,7 @@
           "nombre": "Imperial color negro",
           "precio_base": 25000,
           "descuento": null,
-          "rating": "5.0",
+          "rating": "",
           "agotado": false,
           "foto": "imperialcolornegro.jpg",
           "descripcion": ""
